@@ -12,7 +12,7 @@ Para baixar o repositorio, digite os seguintes comandos no terminal, estando no 
 
 $ git init
 
-$ git clone https://github.com/lcbcFoo/MC102.git
+$ git clone https://github.com/lcbcFoo/mc102.git
 
 ---------------------------------------------------------------------------------------------------------------
 
