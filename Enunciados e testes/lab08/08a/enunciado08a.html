@@ -1,0 +1,106 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 08a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 08a - BigCalc</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 11/05/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 5 <br> <br> <hr> <br>
+
+    <p align="justify">
+      Um dos primeiros instrumentos criados para cálculos aritméticos foi o ábaco, inventado na Mesopotâmia e aperfeiçoado pelos chineses e romanos. Durante aproximadamente 24 séculos, o ábaco, que realiza apenas contas pequenas, foi o único e principal mecanismo existente para calcular. Naquela época, somas de grandes números, como por exemplo o de órbitas e movimento dos planetas, eram feitas inteiramente a mão, e levavam anos para serem completadas pelos matemáticos..
+    </p>
+    
+    <p align="justify">
+      A primeira máquina de somar, totalmente mecânica, foi construída em 1642 pelo francês Blaise Pascal, numa tentativa de ajudar seu pai, funcionário público, que passava horas e horas somando listas intermináveis de cifras. Entretanto, a máquina de Pascal nunca foi muito bem aceita, já que os funcionários, que eram pagos justamente para realizar cálculos à mão, viram no dispositivo uma ameaça a seus trabalhos e se recusaram a utilizá-la. Além disso, a máquina de Pascal realizava apenas operações de adição e subtração.
+      </p>
+    
+    <p align="justify">
+      Mais tarde, Gottfried Leibniz gastou quatro anos modelando uma calculadora mecânica que realizava, além da adição e subtração, a divisão e multiplicação, além de conseguir extrair a raiz quadrada.
+    </p>
+    
+    <p align="justify">
+       Precursoras dos computadores, as calculadoras eletrônicas lançaram as bases da lógica de funcionamento de todos os aparelhos eletrônicos atuais. A primeira máquina de calcular eletrônica, Mark I, criada no ano de 1944 pelo engenheiro americano Howard Aiken, tinha o tamanho de uma casa, 800 quilômetros de fios, 18 mil válvulas e pesava 32 toneladas. Tudo isso apenas para fazer as quatro operações aritméticas.
+    </p>
+    
+    <p align="justify">
+      Hoje, além das calculadoras de bolso comum, existem as calculadoras científicas, que incluem cálculos trigonométricos e estatísticos, e as calculadoras gráficas, capazes de desenhar gráficos a partir de funções. Entretanto, grande parte das calculadoras atuais apresentam em seu display precisão entre 9 a 12 dígitos apenas.
+    </p>
+
+    <p align="justify">
+      Os formatos <tt>int</tt> e <tt>long int</tt> da linguagem C são capazes de armazenar números inteiros com até 10 e 20 dígitos, respectivamente. Como realizar então a adição de dois números inteiros com, por exemplo, 50 digitos cada? Sua tarefa neste laboratório será implementar a soma, a subtração e a multiplicação entre dois números inteiros com um número arbitrário de dígitos. 
+    </p>
+    
+    <p align="justify">
+      Além de identificar a operação a ser realizada, e armazenar os dois operandos a partir da entrada, você deverá implementar as funções das três operações aritméticas utilizando os esboços das funções disponíveis <a href="aux/esboco.c">neste código fonte</a>. Você não deve modificar os parâmetros das funções já existentes. As três funções que devem ser implementadas são:
+    </p>
+    
+    <p align="justify">
+      <tt>void add(int *n1, int tam_n1, int *n2, int tam_n2, int *result);</tt>
+      </p><ul>
+        <li>Função que realiza a adição dos números <tt>n1</tt> e <tt>n2</tt>, de tamanhos <tt>tam_n1</tt> e <tt>tam_n2</tt> respectivamente, armazenando o resultado em <tt>result</tt>.</li>
+      </ul>
+    <p></p>
+    
+    <p align="justify">
+      <tt>void substract(int *n1, int tam_n1, int *n2, int tam_n2, int *result);</tt>
+      </p><ul>
+        <li>Função que subtrai <tt>n2</tt> de <tt>n1</tt>, de tamanhos <tt>tam_n2</tt> e <tt>tam_n1</tt> respectivamente, com <tt>n1 ≥ n2</tt>, armazenando o resultado em <tt>result</tt>.</li>
+      </ul>
+    <p></p>
+    
+    <p align="justify">
+      <tt>void multiply(int *n1, int tam_n1, int *n2, int tam_n2, int *result);</tt>
+      </p><ul>
+        <li>Função que realiza a multiplicação dos números <tt>n1</tt> e <tt>n2</tt>, de tamanhos <tt>tam_n1</tt> e <tt>tam_n2</tt> respectivamente, armazenando o resultado em <tt>result</tt>.</li>
+      </ul>
+    <p></p>
+    
+    <p align="justify">
+      Se necessário, você pode utilizar as funções <tt>add</tt> e <tt>subtract</tt> na implementação da função <tt>multiply</tt>.
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada consiste de 2 números inteiros, <tt>X</tt> <tt>Y</tt>, e um caractere, <tt>C</tt>, onde:
+      <ul>
+        <li><tt>X</tt> representa o número de dígitos do primeiro número, <tt>n1</tt>, com <tt>X ≥ 1</tt>;</li>
+        <li><tt>Y</tt> representa o número de dígitos do segundo número, <tt>n2</tt>, com <tt>Y ≥ 1</tt>;</li>
+        <li><tt>C</tt> representa a operação a ser realizada, onde:</li>
+        <ul>
+          <li><tt>A</tt> representa o operador de adição (<tt>n1 + n2</tt>);</li>
+          <li><tt>M</tt> representa o operador de multiplicação (<tt>n1 * n2</tt>);</li>
+          <li><tt>S</tt> representa o operador de subtração (<tt>n1 - n2</tt>);</li>
+          
+        </ul>
+      </ul>
+      </li><li>As duas próximas linhas contém <tt>X</tt> e <tt>Y</tt> dígitos cada, representado os números <tt>n1</tt> e <tt>n2</tt> respectivamente, com <tt>n1 ≥ n2</tt>.</li>
+     
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Seu programa deve imprimir o resultado da operação realizada, no formato '<tt>X</tt>'.</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="300px"><b><tt>Entrada</tt></b></td><td width="400px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>20 1 S<br>10000000000000000000<br>1</tt></td><td><tt>9999999999999999999</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>30 30 A<br>900000000000000000000000000000<br>100000000000000000000000000000</tt></td><td><tt>1000000000000000000000000000000</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>15 15 M<br>999999999999999<br>999999999999999</tt></td><td><tt>999999999999998000000000000001</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>35 1 A<br>39430481390481390841908490138493892<br>0</tt></td><td><tt>39430481390481390841908490138493892</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>17 17 S<br>94831049384093189<br>94831049384093189</tt></td><td><tt>0</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

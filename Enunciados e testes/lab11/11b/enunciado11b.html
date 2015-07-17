@@ -1,0 +1,318 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 11b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 11b - Brasil, o País do Vôlei</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 01/06/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 8 <br> <br> <hr> <br>
+
+    <p align="justify">
+    A máxima "Brasil, o País do Futebol" nunca esteve tão em cheque. A paulatina degradação dos campeonatos nacionais somada à vergonhosa eliminação da Copa do Mundo em casa para a Alemanha (pelo mísero placar de 7 a 1) nos mostra que o Futebol parece estar migrando de pátria. Se, além disso, considerarmos o tabu de que um time brasileiro de futebol nunca ganhou uma olimpíada, concluiremos que nossa grande esperança de medalha de ouro em esportes coletivos nas olimpíadas do Rio 2016 é o Vôlei. 
+    </p>
+
+    <p align="justify">
+    Resumidamente, o Torneio Olímpico de Vôlei 2016 funcionará da seguinte maneira. Doze times participarão do torneio. Na primeira fase, os times serão organizados em duas chaves de seis times. Cada time realizará, então, uma partida contra todos os outros times de sua chave. Após todas as partidas da primeira fase terem sido disputadas, os quatro melhores times de cada chave avançarão e os demais times deixarão a competição.
+    </p>    
+
+    <p align="justify">
+    Na segunda fase, os times disputarão quartas de final, semifinais e finais. As partidas serão organizadas de acordo com os resultados obtidos na fase anterior, segundo o modelo que é hoje conhecido como "cruzamento olímpico". Sejam os quatro melhores times da chave A denotados por <tt>A<sub>1</sub></tt>, <tt>A<sub>2</sub></tt>, <tt>A<sub>3</sub></tt> e  <tt>A<sub>4</sub></tt> e sejam os quatro melhores times da chave B denotados por <tt>B<sub>1</sub></tt>, <tt>B<sub>2</sub></tt>, <tt>B<sub>3</sub></tt> e <tt>B<sub>4</sub></tt>. As quartas de final serão disputadas da seguinte forma: <tt>A<sub>1</sub>xB<sub>4</sub></tt>, <tt>A<sub>2</sub>xB<sub>3</sub></tt>, <tt>A<sub>3</sub>xB<sub>2</sub></tt> e <tt>A<sub>4</sub>xB<sub>1</sub></tt>. Sejam os vencedores das quartas de final denotados respectivamente por <tt>C<sub>1</sub></tt>, <tt>C<sub>2</sub></tt>, <tt>C<sub>3</sub></tt> e <tt>C<sub>4</sub></tt>. As semifinais serão disputadas da seguinte forma: <tt>C<sub>1</sub>xC<sub>2</sub></tt> e <tt>C<sub>3</sub>xC<sub>4</sub></tt>. As finais serão disputadas pelos mesmos times das semifinais, porém os vencedores disputarão as medalhas de ouro/prata e os perdedores, a medalha de bronze.
+    </p>
+
+    <p align="justify">
+    Para quem não sabe, uma partida de Vôlei é dividida em <i>sets</i>. Ganha a partida o time que vencer 3 <i>sets</i>, que podem ser classificados como normais ou especiais. Para ganhar um <i>set</i> normal, um time tem que marcar, no mínimo, 25 pontos e deve ter pelo menos 2 pontos de vantagem sobre o outro time. Dessa forma, se um <i>set</i> estiver empatado por 24 a 24, ele prosseguirá até que a vantagem de 2 pontos seja alcançada. Caso a partida chegue a um momento em que cada time tenha ganho dois <i>sets</i> normais, será disputado um set especial, chamado <i>tie-break</i>. O vencedor do <i>tie-break</i> (e da partida) é o time que marcar 15 pontos primeiro, respeitando a vantagem mínima de 2 pontos. Dito isto, a classificação dos times em cada chave do torneio olímpico será definida utilizando os seguintes critérios (por ordem de relevância):
+    </p><ul>
+      <li> <b>Pontos</b>. Cada partida disputada vale 3 pontos, que são distribuídos da seguinte forma:
+        <ul>
+          <li>caso a partida termine pelo placar de 3 <i>sets</i> a 0 ou 3 <i>sets</i> a 1, o time ganhador leva os 3 pontos e o time perdedor não leva nenhum ponto;</li>
+          <li>caso a partida termine pelo placar de 3 <i>sets</i> a 2 (<i>i.e.</i> seja decidida no <i>tie-break</i>), o time ganhador leva 2 pontos e o time perdedor leva 1 ponto.</li>
+        </ul>      
+      </li>
+      <li> <b>Número de vitórias</b>. Corresponde ao número total de partidas vencidas por um time na primeira fase.</li>
+      <li> <b>Razão dos <i>sets</i></b>. Corresponde ao resultado da razão <tt>SG/(SG+SP)</tt>, sendo <tt>SG</tt> o número total de <i>sets</i> ganhos e <tt>SP</tt> o número total de <i>sets</i> perdidos por um time considerando todas as partidas disputadas na primeira fase. Em outras palavras, a razão dos <i>sets</i> é igual à porcentagem de <i>sets</i> ganhos do total de <i>sets</i> disputados.</li>
+      <li> <b>Razão dos pontos</b>. Corresponde ao resultado da razão <tt>PG/(PG+PP)</tt>, sendo <tt>PG</tt> o número total de pontos ganhos e <tt>PP</tt> o número total de pontos perdidos por um time considerando todos os <i>sets</i> de todas as partidas disputadas na primeira fase. Em outras palavras, a razão dos pontos é igual à porcentagem de pontos ganhos do total de pontos disputados.</li>
+      <li> <b>Confronto direto</b>. Corresponde ao resultado do confronto entre dois times na primeira fase.</li> 
+    </ul>
+    <p></p>
+
+    <p align="justify">
+Vocês encontrarão os resultados de todas as partidas da primeira fase dos Torneios Olímpicos de Vôlei de 2012, que ocorreram em Londres, nos seguintes links: <a href="http://en.wikipedia.org/wiki/Volleyball_at_the_2012_Summer_Olympics_%E2%80%93_Men%27s_tournament">Torneio Masculino</a> e <a href="http://en.wikipedia.org/wiki/Volleyball_at_the_2012_Summer_Olympics_%E2%80%93_Women%27s_tournament">Torneio Feminino</a>. Note que ambos os torneios usam praticamente as mesmas regras de classificação listadas anteriormente (a única diferença está no cálculo das razões, que na prática não muda o resultado final da classificação). As tabelas abaixo contêm a classificação final dos times após a primeira fase do Torneio Masculino. As letras "G" e "P" no cabeçalho das tabelas servem para designar a quantidade total ganha ("G") e a quantidade total perdida ("P") de um determinado atributo.
+    </p>
+
+<table style="text-align:center;font-family: monospace;" align="center" border="1" cellspacing="0">
+<tbody><tr>
+<th colspan="3">Chave A</th>
+<th colspan="2">Partidas</th>
+<th colspan="3">Sets</th>
+<th colspan="3">Pontos</th>
+</tr>
+<tr>
+<th width="40">Classificação</th>
+<th width="150">Time</th>
+<th width="50">Pontos</th>
+<th width="33">G</th>
+<th width="33">P</th>
+<th width="33">G</th>
+<th width="33">P</th>
+<th width="50">Razão</th>
+<th width="33">G</th>
+<th width="33">P</th>
+<th width="50">Razão</th>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>1</td>
+<td style="text-align:left;">Bulgária</td>
+<td><b>12</b></td>
+<td>4</td>
+<td>1</td>
+<td>13</td>
+<td>4</td>
+<td>0.765</td>
+<td>407</td>
+<td>390</td>
+<td>0.511</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>2</td>
+<td style="text-align:left;">Polônia</td>
+<td><b>9</b></td>
+<td>3</td>
+<td>2</td>
+<td>11</td>
+<td>7</td>
+<td>0.611</td>
+<td>433</td>
+<td>374</td>
+<td>0.537</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>3</td>
+<td style="text-align:left;">Argentina</td>
+<td><b>9</b></td>
+<td>3</td>
+<td>2</td>
+<td>10</td>
+<td>7</td>
+<td>0.588</td>
+<td>382</td>
+<td>367</td>
+<td>0.510</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>4</td>
+<td style="text-align:left;">Itália</td>
+<td><b>8</b></td>
+<td>3</td>
+<td>2</td>
+<td>10</td>
+<td>9</td>
+<td>0.526</td>
+<td>426</td>
+<td>413</td>
+<td>0.508</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>5</td>
+<td style="text-align:left;">Austrália</td>
+<td><b>7</b></td>
+<td>2</td>
+<td>3</td>
+<td>8</td>
+<td>10</td>
+<td>0.444</td>
+<td>395</td>
+<td>397</td>
+<td>0.499</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>6</td>
+<td style="text-align:left;">Grã-Bretanha</td>
+<td><b>0</b></td>
+<td>0</td>
+<td>5</td>
+<td>0</td>
+<td>15</td>
+<td>0.000</td>
+<td>274</td>
+<td>376</td>
+<td>0.422</td>
+</tr>
+</tbody></table>
+
+<br>
+
+<table style="text-align:center;font-family: monospace;" align="center" border="1" cellspacing="0">
+<tbody><tr>
+<th colspan="3">Chave B</th>
+<th colspan="2">Partidas</th>
+<th colspan="3">Sets</th>
+<th colspan="3">Pontos</th>
+</tr>
+<tr>
+<th width="40">Classificação</th>
+<th width="150">Time</th>
+<th width="50">Pontos</th>
+<th width="33">G</th>
+<th width="33">P</th>
+<th width="33">G</th>
+<th width="33">P</th>
+<th width="50">Razão</th>
+<th width="33">G</th>
+<th width="33">P</th>
+<th width="50">Razão</th>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>1</td>
+<td style="text-align:left;">Estados Unidos</td>
+<td><b>13</b></td>
+<td>4</td>
+<td>1</td>
+<td>14</td>
+<td>4</td>
+<td>0.778</td>
+<td>427</td>
+<td>370</td>
+<td>0.536</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>2</td>
+<td style="text-align:left;">Brasil</td>
+<td><b>11</b></td>
+<td>4</td>
+<td>1</td>
+<td>13</td>
+<td>5</td>
+<td>0.722</td>
+<td>418</td>
+<td>379</td>
+<td>0.524</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>3</td>
+<td style="text-align:left;">Rússia</td>
+<td><b>11</b></td>
+<td>4</td>
+<td>1</td>
+<td>12</td>
+<td>5</td>
+<td>0.706</td>
+<td>408</td>
+<td>352</td>
+<td>0.537</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>4</td>
+<td style="text-align:left;">Alemanha</td>
+<td><b>5</b></td>
+<td>2</td>
+<td>3</td>
+<td>6</td>
+<td>11</td>
+<td>0.353</td>
+<td>379</td>
+<td>388</td>
+<td>0.494</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>5</td>
+<td style="text-align:left;">Sérvia</td>
+<td><b>5</b></td>
+<td>1</td>
+<td>4</td>
+<td>7</td>
+<td>13</td>
+<td>0.350</td>
+<td>413</td>
+<td>455</td>
+<td>0.476</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>6</td>
+<td style="text-align:left;">Tunísia</td>
+<td><b>0</b></td>
+<td>0</td>
+<td>5</td>
+<td>1</td>
+<td>15</td>
+<td>0.062</td>
+<td>294</td>
+<td>395</td>
+<td>0.427</td>
+</tr>
+</tbody></table>
+
+<br>
+
+    <p align="justify">
+    Nós temos que, tanto na chave A quanto na chave B, os primeiros colocados foram aqueles times que acumularam mais pontos (primeiro critério de classificação): a Bulgária com 12 pontos e os Estados Unidos com 13 pontos. Curiosamente, o segundo e o terceiro colocados de ambas as chaves empataram tanto na quantidade de pontos (primeiro critério de classificação) quanto no número de vitórias (segundo critério de classificação). Portanto, a classificação foi decidida pela razão dos <i>sets</i> (terceiro critério de classificação). Por fim, cabe destacar que o quarto e o quinto lugar da chave B foram decididos pelo número de vitórias (segundo critério de classificação), dado que houve empate no número de pontos (primeiro critério de classificação). 
+    </p>
+
+    <p align="justify">
+    Dada a classificação final dos times na primeira fase do Torneio Olímpico Masculino de Vôlei de 2012, o cruzamento olímpico descrito anteriormente nos leva à configuração das quartas de final tal como descrito na tabela abaixo.
+    </p>
+
+<br><div align="center"><table style="font-family: monospace; text-align: left; font-size: 14px" border="1" cellpadding="4" cellspacing="0">
+  <tbody>
+    <tr align="center">
+      <td width="200"><b>Quartas de final</b></td>
+    </tr>
+    <tr align="center">
+      <td>Bulgária x Alemanha</td>
+    </tr>
+    <tr align="center">
+      <td>Polônia x Rússia</td>
+    </tr>
+    <tr align="center">
+      <td>Argentina x Brasil</td>
+    </tr>
+    <tr align="center">
+      <td>Itália x Estados Unidos</td>
+    </tr>
+  </tbody>
+</table></div><br>
+
+    <p align="justify">
+    Você se voluntariou para ajudar na organização dos Jogos Olímpicos do Rio 2016 e sua primeira tarefa será escrever um programa que, dados os resultados de todas as partidas da primeira fase do Torneio Olímpico de Vôlei de 2016, imprime a configuração das quartas de final.
+    </p>
+
+    <p align="justify">
+      <b>Importante:</b> utilize o <a href="aux/esboco.c">código</a> fornecido na seção "Arquivos auxiliares" como ponto de partida para a sua solução. Você não deve alterar a definição do registro ou as função já implementadas contidas nesse código (nem mesmo a função main). Note que você pode e deve implementar outras funções que ajudem a compor a sua solução.  
+    </p>
+     
+    <h3>Entrada</h3>
+    A entrada será constituída por 30 linhas. Cada linha corresponde ao resultado de uma partida, de tal modo que as 15 primeiras linhas correspondem aos resultados de todas as partidas realizadas entre os times da chave A e as 15 últimas linhas correspondem aos resultados de todas as partidas realizadas entre os times da chave B. Cada linha terá o seguinte formato: "<tt>X Y X<sub>1</sub>-Y<sub>1</sub> X<sub>2</sub>-Y<sub>2</sub> ... X<sub>k</sub>-Y<sub>k</sub></tt>", com <tt>3 ≤ k ≤ 5</tt>, tal que:
+<ul>
+  <li><tt>X</tt> e <tt>Y</tt> são <i>strings</i> que designam respectivamente um time <tt>X</tt> e um time <tt>Y</tt> de uma mesma chave. Você pode assumir que: 
+    <ul>
+      <li>essas <i>strings</i> serão compostas apenas por letras;</li>
+      <li>haverá pelo menos 3 e no máximo 20 letras em cada <i>string</i>;</li> 
+      <li>a mesma <i>string</i> será utilizada para designar o mesmo time em todas as partidas;</li>
+    </ul>
+  </li>
+  <li><tt>X<sub>i</sub>-Y<sub>i</sub></tt> representa o resultado do <tt>i</tt>-ésimo <i>set</i> da partida, tal que <tt>X<sub>i</sub></tt> é igual ao número de pontos marcados pelo time <tt>X</tt> e <tt>Y<sub>i</sub></tt> é igual ao número de pontos marcados pelo time <tt>Y</tt>. Os limitantes para o número de pontos marcados por um time em um <i>set</i> podem variar conforme explicado no enunciado. O mesmo ocorre com o número de <i>sets</i> de uma partida.</li>
+</ul>
+
+    <h3>Saída</h3>
+    A saída deverá conter 4 linhas, de tal modo que a linha <tt>i</tt> deverá ter o seguinte formato: "<tt>A<sub>i</sub> x B<sub>5-i</sub></tt>", sendo <tt>A<sub>i</sub></tt> a <i>string</i> que designa o time da chave A classificado na <tt>i</tt>-ésima posição e <tt>B<sub>5-i</sub></tt> a <i>string</i> que designa o time da chave B classificado na <tt>(5-i)</tt>-ésima posição, com <tt>i</tt> variando de 1 a 4.
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="475px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>GreatBritain Bulgaria 18-25 20-25 24-26<br>Australia Argentina 21-25 22-25 20-25<br>Italy Poland 25-21 20-25 23-25 14-25<br>Poland Bulgaria 22-25 27-29 25-13 23-25<br>Italy Argentina 25-17 21-25 25-17 25-23<br>GreatBritain Australia 15-25 18-25 20-25<br>Australia Bulgaria 23-25 21-25 22-25<br>Poland Argentina 25-18 25-20 25-16<br>GreatBritain Italy 19-25 16-25 20-25<br>GreatBritain Poland 16-25 19-25 18-25<br>Australia Italy 25-21 25-18 21-25 14-25 13-15<br>Argentina Bulgaria 25-18 21-25 25-19 25-20<br>Australia Poland 25-21 25-22 18-25 25-22<br>Italy Bulgaria 30-32 20-25 19-25<br>GreatBritain Argentina 18-25 18-25 15-25<br>Russia Germany 31-29 25-18 25-17<br>USA Serbia 25-17 25-22 25-21<br>Brazil Tunisia 25-17 25-21 25-18<br>Serbia Tunisia 25-15 25-21 20-25 25-18<br>USA Germany 25-23 25-16 25-20<br>Brazil Russia 25-21 25-23 25-21<br>Serbia Germany 25-22 29-27 18-25 20-25 18-20<br>Russia Tunisia 25-21 25-15 25-23<br>Brazil USA 25-23 25-27 19-25 17-25<br>Germany Tunisia 25-15 25-16 25-16<br>Russia USA 27-29 19-25 26-24 25-16 15-8<br>Brazil Serbia 22-25 25-15 20-25 25-22 15-9<br>Russia Serbia 25-15 25-20 25-17<br>USA Tunisia 25-15 25-19 25-19<br>Brazil Germany 25-21 25-22 25-19</tt></td><td><tt>Bulgaria x Germany<br>Poland x Russia<br>Argentina x Brazil<br>Italy x USA</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>Russia Germany 31-29 25-18 25-17<br>USA Serbia 25-17 25-22 25-21<br>Brazil Tunisia 25-17 25-21 25-18<br>Serbia Tunisia 25-15 25-21 20-25 25-18<br>USA Germany 25-23 25-16 25-20<br>Brazil Russia 25-21 25-23 25-21<br>Serbia Germany 25-22 29-27 18-25 20-25 18-20<br>Russia Tunisia 25-21 25-15 25-23<br>Brazil USA 25-23 25-27 19-25 17-25<br>Germany Tunisia 25-15 25-16 25-16<br>Russia USA 27-29 19-25 26-24 25-16 15-8<br>Brazil Serbia 22-25 25-15 20-25 25-22 15-9<br>Russia Serbia 25-15 25-20 25-17<br>USA Tunisia 25-15 25-19 25-19<br>Brazil Germany 25-21 25-22 25-19<br>GreatBritain Bulgaria 18-25 20-25 24-26<br>Australia Argentina 21-25 22-25 20-25<br>Italy Poland 25-21 20-25 23-25 14-25<br>Poland Bulgaria 22-25 27-29 25-13 23-25<br>Italy Argentina 25-17 21-25 25-17 25-23<br>GreatBritain Australia 15-25 18-25 20-25<br>Australia Bulgaria 23-25 21-25 22-25<br>Poland Argentina 25-18 25-20 25-16<br>GreatBritain Italy 19-25 16-25 20-25<br>GreatBritain Poland 16-25 19-25 18-25<br>Australia Italy 25-21 25-18 21-25 14-25 13-15<br>Argentina Bulgaria 25-18 21-25 25-19 25-20<br>Australia Poland 25-21 25-22 18-25 25-22<br>Italy Bulgaria 30-32 20-25 19-25<br>GreatBritain Argentina 18-25 18-25 15-25</tt></td><td><tt>USA x Italy<br>Brazil x Argentina<br>Russia x Poland<br>Germany x Bulgaria</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>Brazil USA 25-0 25-0 0-25 0-25 15-0<br>Brazil Argentina 25-0 25-0 0-25 0-25 15-0<br>Brazil Spain 25-0 25-0 0-25 0-25 15-0<br>Brazil India 25-0 25-0 25-0<br>Brazil Chile 25-0 25-0 0-25 0-25 15-0<br>USA Argentina 25-0 25-0 25-0<br>USA Spain 25-0 25-0 25-0<br>India USA 25-0 25-0 0-25 0-25 15-0<br>USA Chile 25-0 25-0 25-0<br>Argentina Chile 25-0 25-0 25-0<br>Argentina India 25-0 25-0 0-25 0-25 15-0<br>Argentina Spain 25-0 25-0 0-25 0-25 15-0<br>Spain India 25-0 25-0 25-0<br>Spain Chile 25-0 25-0 25-0<br>India Chile 25-0 25-0 25-0<br>BosniaAndHerzegovina Zambia 25-0 25-0 0-25 0-25 15-0<br>BosniaAndHerzegovina Oman 25-0 25-0 0-25 0-25 15-0<br>BosniaAndHerzegovina Netherlands 25-0 25-0 0-25 0-25 15-0<br>BosniaAndHerzegovina Mexico 25-0 25-0 25-0<br>BosniaAndHerzegovina Vietnam 25-0 25-0 0-25 0-25 15-0<br>Zambia Oman 25-0 25-0 25-0<br>Zambia Netherlands 25-0 25-0 25-0<br>Mexico Zambia 25-0 25-0 0-25 0-25 15-0<br>Zambia Vietnam 25-0 25-0 25-0<br>Oman Netherlands 25-0 25-0 0-25 0-25 15-0<br>Oman Mexico 25-0 25-0 0-25 0-25 15-0<br>Oman Vietnam 25-0 25-0 0-25 0-25 15-0<br>Netherlands Mexico 25-0 25-0 25-0<br>Netherlands Vietnam 25-0 25-0 0-25 0-25 15-0<br>Mexico Vietnam 25-0 25-0 25-0</tt></td><td><tt>Brazil x Netherlands<br>USA x Oman<br>Argentina x Zambia<br>Spain x BosniaAndHerzegovina</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>Brazil Argentina 25-0 25-0 25-0<br>Argentina Cuba 25-0 25-0 25-0<br>Argentina Denmark 25-0 25-0 25-0<br>Argentina Estonia 25-0 25-0 25-0<br>Argentina Finland 25-0 25-0 25-0<br>Cuba Brazil 25-0 25-0 25-0<br>Brazil Denmark 25-0 25-0 25-0<br>Brazil Estonia 25-0 25-0 25-0<br>Brazil Finland 25-0 25-0 25-0<br>Denmark Cuba 25-0 25-0 25-0<br>Cuba Estonia 25-0 25-0 25-0<br>Cuba Finland 25-0 25-0 25-0<br>Denmark Estonia 25-0 25-0 25-0<br>Denmark Finland 25-0 25-0 25-0<br>Estonia Finland 25-0 25-0 25-0<br>Bolivia Austria 25-0 25-0 25-0<br>Austria Chad 25-0 25-0 25-0<br>Austria Togo 25-0 25-0 25-0<br>Austria USA 25-0 25-0 25-0<br>Austria Burundi 25-0 25-0 25-0<br>Chad Bolivia 25-0 25-0 25-0<br>Bolivia Togo 25-0 25-0 25-0<br>Bolivia USA 25-0 25-0 25-0<br>Bolivia Burundi 25-0 25-0 25-0<br>Togo Chad 25-0 25-0 25-0<br>Chad USA 25-0 25-0 25-0<br>Chad Burundi 25-0 25-0 25-0<br>Togo USA 25-0 25-0 25-0<br>Togo Burundi 25-0 25-0 25-0<br>USA Burundi 25-0 25-0 25-0</tt></td><td><tt>Brazil x Chad<br>Argentina x Togo<br>Denmark x Austria<br>Cuba x Bolivia</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>Paraguay Angola 25-5 25-5 25-5<br>Angola Chile 25-10 25-10 25-10<br>Angola Somalia 25-0 25-0 25-0<br>Angola Vietnam 25-0 25-0 25-0<br>Angola Uganda 25-0 25-0 25-0<br>Chile Paraguay 25-15 25-15 25-15<br>Paraguay Somalia 25-0 25-0 25-0<br>Paraguay Vietnam 25-0 25-0 25-0<br>Paraguay Uganda 25-0 25-0 25-0<br>Chile Somalia 25-0 25-0 25-0<br>Chile Vietnam 25-0 25-0 25-0<br>Chile Uganda 25-0 25-0 25-0<br>Somalia Vietnam 25-0 25-0 25-0<br>Uganda Somalia 25-10 25-10 25-10<br>Vietnam Uganda 25-20 25-20 25-20<br>Netherlands BosniaAndHerzegovina 25-23 25-23 25-23<br>BosniaAndHerzegovina Mexico 25-0 25-0 0-25 25-0<br>BosniaAndHerzegovina Oman 25-0 25-0 0-25 25-0<br>BosniaAndHerzegovina Zambia 25-0 25-0 0-25 25-0<br>BosniaAndHerzegovina Yemen 25-0 25-0 0-25 25-0<br>Mexico Netherlands 25-23 25-23 25-23<br>Netherlands Oman 25-0 25-0 0-25 25-0<br>Netherlands Zambia 25-23 25-23 0-25 25-23<br>Netherlands Yemen 25-0 25-0 0-25 25-0<br>Mexico Oman 25-23 25-23 25-23<br>Mexico Zambia 25-23 25-23 25-23<br>Mexico Yemen 25-13 25-13 25-23<br>Oman Zambia 25-23 25-23 25-23<br>Yemen Oman 25-0 25-0 0-25 25-0<br>Zambia Yemen 25-23 25-23 0-25 25-23</tt></td><td><tt>Paraguay x Oman<br>Angola x BosniaAndHerzegovina<br>Chile x Netherlands<br>Uganda x Mexico</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

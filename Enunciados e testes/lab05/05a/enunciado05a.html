@@ -1,0 +1,129 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 05a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 05a - Necronomicon</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 22/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 3 <br> <br> <hr> <br>
+    
+    <p align="justify">
+      O Necronomicon (descrito na dissertação ficcional "The History of Necronomicon", de <a href="http://pt.wikipedia.org/wiki/H._P._Lovecraft">H. P. Lovecraft</a>) é um suposto livro que antagoniza livros sagrados. Ele descreve as entidades, às vezes referidos como "deuses", que vivem fora do nosso universo e um dia vão novamente caminhar no nosso mundo e eliminar toda a humanidade no processo, alguns sem sequer perceber. O terror de Lovecraft se distinguiu pela fundamental premissa de que leis, interesses e emoções humanas são insignificantes no vasto universo. São esquecidas coisas como bem e mal, amor e ódio e todos os atributos locais da "raça temporária" humana.
+    </p>
+
+    <p align="justify">
+      Este livro fictício teria sido escrito por Abdul Alhazred, um poeta louco, na cidade de Sana'a, Iêmen. O título original do livro é <i>Al Azif</i>, que significa o som noturno que insetos fazem (acreditava-se que eram gritos de gênios).
+    </p>
+
+    <p align="justify">
+      Uma primeira tradução foi feita para o grego, onde atribuiu-se o seu atual nome, Necronomicon. Desde então, o livro possui uma história sinuosa. Todas as cópias em Árabe foram queimadas. Ele recebeu uma tradução para o latim e foi banido pelo papa Gregorio IX em 1232. O livro é rigidamente suprimido pelas autoridades da maioria dos países e por todas as organizações eclesiásticas.
+    </p>
+    
+  <p align="justify">
+    Algumas pessoas escondem versões digitais codificadas, para que não sejam achadas facilmente. O código é inserir algumas letras no meio dos nomes das entidades descritas no livro. Exemplo: o nome <i>cthulhu</i> pode ser codificado como <i>ocithualhu</i> ao inserir-se um caractere <tt>'o'</tt> no início da palavra, um <tt>'i'</tt> após o <tt>'c'</tt> e um <tt>'a'</tt> após o primeiro <tt>'u'</tt>. A palavra <i>cthulhu</i> é uma subsequência de <i>ocithualhu</i>.
+  </p>
+
+  <ul>
+    <li>Definição: <tt>A</tt> é uma subsequência de <tt>B</tt>, se <tt>A</tt> pode ser obtida removendo alguns caracteres de <tt>B</tt>, sem alterar a ordem dos caracteres restantes.</li>
+  </ul>
+
+  <p align="justify">
+    Para isso, as autoridades contam com você para criar um programa que quebre esse código, para encontrar cópias escondidas deste livro. A tarefa deste laboratório é escrever um programa que, dadas duas <i>strings</i>, diga se uma delas é uma subsequência da outra.
+  </p>
+
+    <h3>Entrada</h3>
+
+    Seu programa deve receber um número inteiro, <tt>n</tt> (<tt>n ≥ 1</tt>), onde <tt>n</tt> representa o número de pares de palavras que precisam ser testados. Em seguida, serão fornecidas <tt>n</tt> linhas, cada uma composta por duas palavras, cada uma delas com no máximo 20 caracteres. A primeira corresponde ao nome de uma entidade e a segunda, possivelmente, uma codificação da primeira palavra dada.
+
+    <h3>Saída</h3>
+
+    Para cada par de palavras, o programa deve imprimir:
+    <ul>
+      <li><tt>Sim</tt>: se a primeira palavra é uma subsequência da segunda.</li>
+      
+      <li><tt>Nao</tt>: caso contrário.</li>
+    </ul>
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="350px"><b><tt>Entrada</tt></b></td><td width="150px"> <b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left">
+      <td>1</td>
+      <td><tt> 2 <br>
+      cthulhu ocitahulahu <br>
+      necronomicon macroeconomy </tt></td>
+      <td><tt>Sim <br>
+      Nao <br>
+      </tt></td>
+    </tr>
+    <tr valign="top" align="left">
+      <td>2</td>
+      <td><tt> 5 <br>
+      azathoth azathatos <br>
+      necronomicon necroeconomicon <br>
+      yog-sothoth yoga-sotanhoth <br>
+      nyarlathotep nyancat <br>
+      glaaki gladkhaki </tt>
+      </td>
+      <td><tt>Nao <br>
+      Sim <br>
+      Sim <br>
+      Nao <br>
+      Sim <br>
+      </tt></td>
+    </tr>
+    <tr valign="top" align="left">
+      <td>3</td>
+      <td><tt> 1 <br>
+      alhazred alhambrazred
+      </tt></td>
+      <td><tt>Sim
+      </tt>
+      </td>
+    </tr>
+    <tr valign="top" align="left">
+      <td>4</td>
+      <td><tt> 4 <br>
+      alazif allazziff <br>
+      abdul abadul <br>
+      dagon dragon <br>
+      robertolmstead-marsh robertolmstead-masch <br>
+      </tt></td>
+      <td><tt>Sim <br>
+      Sim <br>
+      Sim <br>
+      Nao
+      </tt>
+      </td>
+    </tr>
+    <tr valign="top" align="left">
+      <td>5</td>
+      <td><tt> 4 <br>
+      nyarlathotep nyarlaws <br>
+      hastur haster <br>
+      azathoth ozathoth <br>
+      masch robertolmstead-masch <br>
+      </tt>
+      </td>
+      <td><tt>Nao <br>
+      Nao <br>
+      Nao <br>
+      Sim
+      </tt>
+      </td>
+    </tr>
+
+    </tbody></table><br>
+
+
+</body></html>

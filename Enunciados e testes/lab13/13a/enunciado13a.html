@@ -1,0 +1,130 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 13a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 13a - Hanabi</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 15/06/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 9 <br> <br> <hr> <br>
+    
+    <div align="center"><img src="hanabi.jpg" width="470px"></div>
+    
+    <p align="justify">
+      Todo ano, no último sábado de julho, acontece no Japão uma grande competição de fogos de artifício (em japonês, hanabi - 花火), o Sumidagawa Hanabi Taikai. Equipes competem pela melhor apresentação, fazendo complexas formas, figuras e ideogramas. O festival simboliza o luto pelos mortos e a celebração da vida, além de servir como uma forma de entretenimento.
+    </p>
+
+    <p align="justify">
+      Cada apresentação demanda um minucioso projeto, para criar uma combinação de elementos que façam o efeito desejado. Dado um desenho objetivo, uma equipe de profissionais especializados trabalha na composição das bombas e nas suas direções de lançamento, velocidades e tempos de explosão.
+    </p>
+    
+    <p align="justify">
+      A cor de uma explosão depende do elemento químico misturado à pólvora. Por exemplo, o sódio confere a cor amarela ao fogo, o cobre, a cor azul e o bário, a cor verde. A estrutura e compartimentalização da bomba define o formato da explosão. Mais ainda, diferentes compostos químicos adicionados em diferentes cargas de pólvora conferem efeitos multicoloridos.
+    </p>
+    
+    <p align="justify">
+      Cada módulo de bomba é composto por uma carga de pólvora, mais uma quantidade variável de outros módulos menores. Desta forma, a explosão do módulo inicial de uma bomba cria um efeito luminoso e lança no ar um conjunto de outros sub-módulos (sub-bombas). Cada sub-módulo lançado cria mais um efeito luminoso e, por sua vez, lança no ar mais um conjunto de sub-bombas. A figura abaixo exemplifica este processo.
+    </p>
+
+    <div align="center"><img src="arvore.png" width="510px"></div>
+
+    <p align="justify">
+      Essa estrutura é chamada de árvore de queima. Esta árvore é representada numericamente através da seguinte fórmula: <tt>A = n A<sub>1</sub> A<sub>2</sub> ... A<sub>n</sub></tt>, onde <tt>n</tt> é o número de sub-árvores e <tt>A<sub>i</sub></tt> é a representação da sua i-ésima sub-árvore. No exemplo acima, a árvore é representada da seguinte forma:
+      
+      <tt>A = 3 <span style="color:#dc2e2e;">A<sub>1</sub></span> <span style="color:#36dc2e;">A<sub>2</sub></span> <span style="color:#2e2edc;">A<sub>3</sub></span></tt>, onde <tt><span style="color:#dc2e2e;">A<sub>1</sub></span></tt> é a sub-árvore vermelha (que representa a sub-bomba 1), <tt><span style="color:#36dc2e;">A<sub>2</sub></span></tt> é a sub-árvore verde (que representa a sub-bomba 2) e <tt><span style="color:#2e2edc;">A<sub>3</sub></span></tt> é a sub-árvore azul (que representa a sub-bomba 3).
+      
+      Expandindo cada uma das sub-árvores, temos a seguinte representação final da árvore: <tt>A = 3 <span style="color:#dc2e2e;">2 1 0 0</span> <span style="color:#36dc2e;">0</span> <span style="color:#2e2edc;">1 0</span></tt>.
+
+    </p>
+    
+    <p align="justify">
+      A altura do módulo inicial de uma bomba é 1. A altura dos outros módulos é definida como a altura do seu módulo pai, mais 1. Define-se a altura da árvore como a maior altura entre os módulos que a compõem. A altura da árvore exemplificada acima é 4.
+    </p>
+
+<!--
+    <p align="justify">
+      Para efeito de sincroniza&ccedil;&atilde;o, como parte do seu trabalho, voc&ecirc; precisa determinar quanto tempo vai demorar para que a bomba termine de queimar. Considere que o tempo de queima &eacute; proporcional &agrave; altura da &aacute;rvore.
+    </p>
+-->
+
+    <p align="justify">
+      O objetivo deste laboratório é escrever um programa que leia a estrutura de uma bomba e imprima a altura da árvore que a representa.
+    </p>
+
+    <h3>Entrada</h3>
+
+    Seu programa deve receber uma linha com uma sequência de números inteiros não negativos representado a estrutura de uma árvore.
+
+    <h3>Saída</h3>
+
+    Seu programa deve imprimir um número inteiro positivo, correspondente à altura da árvore.
+
+
+    <h3>Exemplos</h3>
+
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody>
+        <tr align="center">
+          <td width="15px"><b><tt>#</tt></b></td>
+          <td width="325px"><b><tt>Entrada</tt></b></td>
+          <td width="275px"> <b><tt>Saída</tt></b></td>
+        </tr>
+        
+        <tr valign="top" align="left">
+          <td>1</td>
+          <td><tt> 3 2 1 0 0 0 1 0 <br>
+          </tt></td>
+          <td><tt>
+              4<br>
+          </tt></td>
+        </tr>
+
+        <tr valign="top" align="left">
+          <td>2</td>
+          <td><tt>5 2 0 0 2 0 0 2 0 0 2 0 0 2 0 0 <br>
+          </tt></td>
+          <td><tt>
+            3 <br>
+          </tt></td>
+        </tr>
+
+        <tr valign="top" align="left">
+          <td>3</td>
+          <td><tt>0 <br>
+          </tt></td>
+          <td><tt>
+              1 <br>
+          </tt></td>
+        </tr>
+
+        <tr valign="top" align="left">
+          <td>4</td>
+          <td><tt>2 2 2 2 2 0 0 0 0 0 0 <br>
+          </tt></td>
+          <td><tt>
+              6 <br>
+          </tt></td>
+        </tr>
+
+        <tr valign="top" align="left">
+          <td>5</td>
+          <td><tt>3 2 1 1 0 2 1 0 0 0 2 2 1 0 1 0 1 0 <br>
+          </tt></td>
+          <td><tt>
+              5 <br>
+          </tt></td>
+        </tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

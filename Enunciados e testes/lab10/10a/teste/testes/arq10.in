@@ -1,0 +1,12 @@
+107 3 3 11
+a turing machine consists of the following components simplified
+a limited set of states with one state marked as start state while running a turing machine always has a current state
+an infinite tape with storage cells and a read write device that can move on the tape
+a definition of a so called transition function
+also a working alphabet set of characters has to be defined
+when a turing machine is started a word out of the working alphabet must be present on the infinite tape of the machine the read write device on the first character now reads the first character and depending on the current state of turing machine the read write device overwrites the character with a new one or moves one cell to the left or to the right furthermore the current state of the machine can be switched
+turing machines that decide languages
+a turing machine is said to decide a language if it is always able to determine whether a given word is contained in a certain language or not therefore the machine usually has two special states marked as accept and reject after a while one of the two states will be reached depending on the input word and the machine is halted if only one of the two states will ever be reached the turing machine is said to semi decide a language
+turing machines that compute functions
+if a turing machine is used for the computation of functions it only has one end state when the machine comes to that state it is halted and the result of the function depending on the input can be found on the tape
+*

@@ -1,0 +1,69 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 05b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 05b - Distância de Tchonsky</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 22/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 4 <br> <br> <hr> <br>
+
+    <p align="justify">
+    Um problema bastante estudado em Ciência da Computação é o de encontrar um padrão de caracteres, geralmente definido por uma <i>string</i> curta, em uma grande sequência de caracteres ou em um texto, que pode ser visto como uma <i>string</i> longa. Tal problema é encontrado em várias aplicações, tais como busca de uma palavra em um texto, detecção de plágio, correção ortográfica, análise de sequências de DNA e RNA, entre outras. No entanto, nem sempre estamos interessados em encontrar apenas o padrão exato, mas também padrões similares a ele.
+
+Nesses casos, um método muito comum é o seguinte. Primeiro, define-se uma métrica para <i>strings</i>, isto é, define-se uma função que, dadas duas <i>strings</i>, devolve um número que indica qual a distância (ou similaridade) entre essas <i>strings</i>. Depois, encontram-se todos os padrões de caracteres que possuem uma distância menor do que um certo valor, em relação ao padrão original de busca.
+    </p>
+
+    <p align="justify">
+    Uma das métricas mais simples para <i>strings</i> é a chamada Distância de Hamming. Dadas duas <i>strings</i> de mesmo tamanho, a distância de Hamming entre elas é igual ao número de posições nas quais elas diferem entre si. Dito de outra forma, a distância de Hamming entre elas é igual ao menor número de substituições necessárias para transformar uma <i>string</i> na outra. Ela foi definida pela primeira vez por Richard Wesley Hamming (por isso o nome da métrica) e foi utilizada na detecção e correção de erros em transmissões de sinais de telecomunicação, que podem ser vistos como sequências de <i>bits</i>.
+    </p>
+        
+    <p align="justify">
+    Um dos problemas da distância de Hamming é que ela só faz sentido quando aplicada sobre <i>strings</i> de mesmo tamanho. Por essa razão, outra métrica bastante popular e que generaliza a distância de Hamming é a chamada Distância de Levenshtein, também conhecida como distância de edição. Dadas duas <i>strings</i>, a distância de Levenshtein entre elas é igual ao número mínimo de operações necessárias para transformar uma <i>string</i> na outra. As operações possíveis são inserção, remoção ou substituição de um caractere. Esta métrica foi definida pela primeira vez por Vladimir Iosifovich Levenshtein.
+    </p>
+
+    <p align="justify">
+    Outras métricas existem e, de modo geral, uma métrica visa cobrir as fraquezas das outras em determinados contextos. Com o objetivo de eliminar a necessidade de se criar diversas métricas, Noel Tchonsky, um notável linguista, teve a seguinte ideia: criar uma língua que facilitasse a criação de uma métrica única para as palavras (ou <i>strings</i>) que as constituem. Basicamente, ele criou uma língua com a seguinte propriedade: todas as palavras (ou <i>strings</i>) que possuem exatamente as mesmas letras (ou caracteres) são equivalentes. Por exemplo, as palavras "aatt", "atat", "atta", "taat", "atat", "tata" e "ttaa" são todas equivalentes e querem dizer "Pindamonhangaba" em Português. Por outro lado, as palavras "ta" e "at" são equivalentes entre si, mas não são equivalentes às citadas anteriormente, pois aquelas sete possuem dois "t" e dois "a", enquanto estas duas possuem apenas uma letra de cada. Aliás, "ta" e "at" querem dizer "atenção" em Português.
+    </p> 
+
+    <p align="justify">
+    Considerando essa nova língua, Tchonsky propôs a criação de uma nova métrica, chamada Distância de Tchonsky. Dadas duas <i>strings</i> <tt>A</tt> e <tt>B</tt>, seja <tt>C(A,B)</tt> o número de caracteres em comum entre elas, considerando que: (i) os caracteres não são "sensíveis ao caso", ou seja, letras maiúsculas e minúsculas são consideradas equivalentes, e (ii) os caracteres repetidos devem ser contados repetidamente. Por exemplo, supondo que <tt>A = AatT</tt> e <tt>B = tTaa</tt>, nós temos que <tt>C(A,B) = 4</tt>. Por outro lado, supondo que <tt>A = aAtt</tt> e <tt>B = DaT</tt>, nós temos que <tt>C(A,B) = 2</tt>. A distância de Tchonsky entre <tt>A</tt> e <tt>B</tt> é igual a <tt>d(A,B) = |A| + |B| - 2 × C(A,B)</tt>, sendo que <tt>|A|</tt> denota o tamanho de <tt>A</tt> e <tt>|B|</tt> denota o tamanho de <tt>B</tt>.     
+    </p>
+
+    <p align="justify">
+    Além de linguista, Noel Tchonsky é músico e atualmente encontra-se em turnê internacional com seu quarteto de cordas chamado "É o Tchonsky". Por essa razão, ele lhe incumbiu a tarefa de implementar um programa em C que, dadas duas <i>strings</i>, calcula a distância de Tchonsky entre elas.      
+    </p>
+
+    <h3>Entrada</h3>
+
+    A entrada é constituída de duas linhas:
+    <ul>
+      <li>A primeira linha contém a <i>string</i> <tt>A</tt>, <tt>1 ≤ |A| ≤ 100</tt>;</li>
+      <li>A segunda linha contém a <i>string</i> <tt>B</tt>, <tt>1 ≤ |B| ≤ 100</tt>.</li>
+    </ul>
+    Considere que as <i>strings</i> são constituídas apenas por letras.
+
+    <h3>Saída</h3>
+
+    Seu programa deve imprimir a resposta no seguinte formato: "<tt>Distancia de Tchonsky = X</tt>", onde <tt>X</tt> é igual à distância de Tchonsky entre <tt>A</tt> e <tt>B</tt>. 
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>AatT<br>tTaa</tt></td><td><tt>Distancia de Tchonsky = 0</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>aAtt<br>DaT</tt></td><td><tt>Distancia de Tchonsky = 3</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>A<br>z</tt></td><td><tt>Distancia de Tchonsky = 2</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>HipOPOtomonStroSESquipEDAliOFObIA<br>NaMAStE</tt></td><td><tt>Distancia de Tchonsky = 26</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>ChA<br>pnEUmouLTraMicrolAscOuscopicosSilicOVulcAnoconIOTiCo</tt></td><td><tt>Distancia de Tchonsky = 51</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

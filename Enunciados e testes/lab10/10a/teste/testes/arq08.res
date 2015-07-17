@@ -1,0 +1,15 @@
+discrete 16
+mathematics 15
+the 12
+and 8
+objects 7
+are 5
+that 5
+numbers 4
+such 4
+computer 3
+continuous 3
+finite 3
+from 3
+real 3
+sets 3

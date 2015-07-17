@@ -1,0 +1,77 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 14a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 14a - Cargo-Bot - Part III</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 22/06/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 9 <br> <br> <hr> <br>
+
+    <p align="justify">
+      Após o sucesso na implementação da primeira e segunda parte, chegou a hora de implementar a terceira e última parte do Cargo-Bot para computador. Para que as jogadas ocorram da mesma forma que no iOS, falta apenas que os programas, além de comandos básicos, possam chamar também outros programas.
+    </p>
+    
+    <p align="justify">
+      Os comandos básicos, a detecção de um acidente e o funcionamento do braço mecânico continuam como descritos no <a href="../04a/enunc.html">Laboratório 04a</a>. Além disso, o funcionamento comandos condicionais, a representação e as cores das caixas, e o número de programas continuam como descritos no <a href="../07a/enunc.html">Laboratório 07a</a>.
+    </p>
+    
+    <p align="justify">
+      Agora, além dos comandos básicos e condicionais, um programa pode também chamar outro programa, inclusive ele mesmo. A chamada a um programa será representado pelo número do mesmo, ou seja, se o programa de número <tt>i</tt> chama o programa de número <tt>j</tt> durante sua execução, um dos comandos de <tt>i</tt> será o número <tt>j</tt>, com <tt>1 ≤ i,j ≤ 9</tt>.
+    </p>  
+      
+      
+    <p align="justify">  
+      Da mesma forma que os comandos básicos, a chamada de um programa pode ou não ser subordinado a um comando condicional. Por exemplo, os comandos do <tt>Programa 1</tt> da figura abaixo, que serão representados na versão para computador por <tt>"DN3Y21*"</tt>, faz com que o braço mecânico desça, chama o <tt>Programa 3</tt>, caso ele não esteja segurando uma caixa, depois chama o <tt>Programa 2</tt>, caso ele esteja segurando uma caixa da cor amarela, e por último chama novamente ele mesmo.
+    </p>
+    
+    <p align="center">
+      <img src="programas_e_comandos.jpg">
+    </p>
+    
+    <p align="justify">
+      Note que os programas do Cargo-Bot poderão entrar em loop infinito. Por este motivo, um dos parâmetros da entrada desta última versão será o número máximo de execuções de programas. Após alcançar o número máximo de execuções de programas, seu programa deve ignorar qualquer chamada a novos programas, e executar apenas comandos básicos, se existirem. Considerando o exemplo acima, caso seja atingido o número máximo de execuções ao executar o <tt>Programa 1</tt>, ele deverá apenas executar o comando básico <tt>D</tt>, ignorando as chamadas aos programas 3, 2 e 1.
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada consistirá de 5 números inteiros, <tt>X</tt> <tt>Y</tt> <tt>P</tt> <tt>C</tt> <tt>E</tt>, onde:
+      <ul>
+        <li><tt>X</tt> representa o número de posições existentes para empilhamento das caixas;</li>
+        <li><tt>Y</tt> representa o número máximo de caixas que podem ser empilhadas;</li>
+        <li><tt>P</tt> representa o número de programas existentes, com <tt>1 ≤ P ≤ 9</tt>;</li>
+        <li><tt>C</tt> representa o número máximo de comandos em um programa;</li>
+        <li><tt>E</tt> representa o número máximo de execuções de programas, com <tt>E ≥ 1</tt>.</li>
+      </ul>
+      </li><li>As próximas <tt>Y</tt> linhas conterão <tt>X</tt> caracteres cada, representando o estado inicial das caixas;</li>
+      <li>Por fim, existirão <tt>P</tt> linhas, uma para cada programa, com no máximo <tt>C</tt> caracteres representando os comandos (básicos, condicionais e chamadas a outros programas) e um caractere extra, <tt>*</tt>, indicando o fim da lista de comandos.</li>
+      <li>Assim como nas outras versões do Cargo-Bot, considere que, antes do primeiro comando do primeiro programa, o braço robótico encontra-se na posição mais à esquerda e não segura nenhuma caixa.</li>
+      <li>Considere também que o primeiro programa a ser executado será o <tt>Programa 1</tt>, sendo esta execução contabilizada no número máximo de execuções.
+    </li></ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Se um acidente ocorreu durante a execução dos programas e comandos, seu programa deve imprimir apenas "<tt>Um acidente ocorreu</tt>".</li>
+      <li>Caso contrário, seu programa deve imprimir a configuração final das caixas após a execução de todos os comandos, com <tt>Y</tt> linhas e <tt>X</tt> colunas.</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>3 5 1 9 14<br>...<br>G..<br>G..<br>Y..<br>B..<br>DARBRNL1*</tt></td><td><tt>...<br>..G<br>..G<br>..Y<br>..B</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>3 6 3 6 36<br>.Y.<br>.B.<br>.Y.<br>.B.<br>.Y.<br>.B.<br>32231*<br>DR*<br>DL*</tt></td><td><tt>.B.<br>.Y.<br>.B.<br>.Y.<br>.B.<br>.Y.</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>4 5 3 13 17<br>....<br>.YB.<br>.YY.<br>.BB.<br>.BY.<br>R2*<br>32*<br>NDBLBDRRDLNL*</tt></td><td><tt>....<br>B..Y<br>B..Y<br>B..Y<br>B..Y</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>6 5 1 9 26<br>......<br>Y.....<br>Y.....<br>YG..G.<br>YGGGG.<br>NDGDRDNL1*</tt></td><td><tt>Um acidente ocorreu</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>8 6 3 8 60<br>........<br>........<br>........<br>........<br>........<br>.YYYYYY.<br>RR2*<br>DN3YDL2*<br>RDR*</tt></td><td><tt>.......Y<br>.......Y<br>.......Y<br>.......Y<br>.......Y<br>.......Y</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

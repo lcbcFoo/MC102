@@ -1,0 +1,163 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 09a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 09a - A Batalha de Geonosis</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 18/05/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 6 <br> <br> <hr> <br>
+
+
+    <p align="justify">
+    Durante a perseguição a Jango Fett, Obi-Wan Kenobi foi ao planeta Geonosis, onde descobriu que se encontrava a base dos Separatistas, que eram liderados pelo Conde Dookan. Obi-Wan acabou sendo capturado pelos Separatistas e acusado de espionagem. Seu aprendiz Anakin Skywalker e a Senadora Padmé Amidala tentaram resgatá-lo, mas também foram capturados e condenados à morte. Um grupo de 212 Jedi, comandados por Mace Windu, foi enviado ao planeta Geonosis para salvar os três prisioneiros. No momento em que Obi-Wan, Anakin e Padmé estavam para ser mortos na Arena Geonosiana, Mace e seus comandados atacaram. Dookan enviou dezenas de droides para contra-atacar os Jedi, que lutaram bravamente até serem salvos por Yoda, que trouxe os soldados clones e a artilharia. Essa batalha ficou conhecida como "A Batalha de Geonosis".
+    </p>
+
+    <center>
+    <img style="width: 800px;" src="at_te.jpg">
+    </center>
+
+    <p align="justify">
+    Antes de realizar a ofensiva, Yoda analisou o exército inimigo. Ele deduziu que um ataque frontal não seria muito eficaz devido à grande quantidade de droides. Por essa razão, ele planejou posicionar unidades AT-TE em pontos estratégicos do campo de batalha, transportando-as com unidades LAAT/C. Para quem não sabe, os AT-TE possuem um canhão laser de duplo sentido capaz de destruir todas as unidades inimigas localizadas na linha de tiro (em ambos os sentidos). Além disso, eles possuem um campo de força capaz de resistir à ataques. O principal objetivo desta tática é eliminar a maior quantidade de droides inimigos num setor do campo de batalha, e em segundo plano, utilizar o mínimo de disparos, já que se tem problemas de fornecimento de energia, portanto cada unidade AT-TE será carregada com o mínimo de energia possível.
+    </p>
+
+    <p align="justify">
+    Para entender melhor a estratégia elaborada por Yoda, suponha que um determinado setor do campo de batalha possa ser representado por uma matriz, onde todas as células são quadradas, possuem o mesmo tamanho e podem conter no máximo um droide inimigo. Por exemplo, suponha que um dado setor do campo de batalha esteja representado pela matriz abaixo.
+    </p>
+    
+    <p align="center"><img src="campo.jpg" height="230px"></p>
+  
+    <p align="justify">
+    Os droides inimigos, representados por pontos azuis, estão localizados no centro das células. Desse modo, um droide é eliminado apenas se o disparo realizado pelo AT-TE passa pelo centro da célula em que o droide se encontra. Além disso, cada unidade AT-TE deve ser transportada para uma determinada célula de tal modo que o canhão laser fique no centro da célula. O campo de força de um AT-TE só pode ser usado enquanto ele estiver estático. Desse modo, uma vez que ele foi posicionado em uma célula, não é possível movimentá-lo. Contudo, é possível mudar a direção do canhão laser para 4 possíveis ângulos: vertical, horizontal e as duas diagonais. A figura abaixo mostra os 4 possíveis ângulos de disparo do AT-TE. Note que, por exemplo, ao ser disparado na horizontal (linha verde na figura abaixo), o AT-TE destruirá todos os droides localizados naquela linha, tanto a esquerda, quanto a direita da sua posição.
+
+    </p><p align="center"><img src="angulos.jpg" height="100px"></p>
+
+    <p></p>     
+
+    <p align="justify">
+    Por exemplo, suponha que uma unidade AT-TE seja transportada para três células diferentes, tal como ilustrado nas figuras (a), (b) e (c). A unidade AT-TE é representada por um ponto verde.
+    
+
+    </p><p align="center"><img src="disparos.jpg" height="250px"></p>
+
+    Então, o número de droides inimigos que podem ser eliminados considerando as figuras (a), (b) e (c) são 9, 5 e 7, respectivamente. Nas figuras (a), (b) e (c), o AT-TE é disparado 4, 2 e 3 vezes, respectivamente. Note que a posição mostrada em (a) é a melhor dentre as posições ilustradas, pois implica no maior numero número de droides eliminados. Na verdade, a posição mostrada em (a) é a melhor dentre todas as posições possíveis, isto é, dentre todas as células em que não existem um droide inimigo.
+    <p></p>
+
+    <p align="justify">
+    A tarefa deste laboratório é desenvolver um programa capaz de reproduzir a estratégia de batalha elaborada por Yoda. Em outras palavras, dada a representação matricial de um setor do campo de batalha, o programa deverá determinar a célula em que um AT-TE deverá ser posicionado a fim de eliminar o maior número de droides inimigos.
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada contém dois inteiros <tt>M</tt> (<tt>1 ≤ M ≤ 50</tt>) e <tt>N</tt> (<tt>1 ≤ N ≤ 50</tt>) que representam o número de linhas e de colunas da matriz, respectivamente.</li>
+      <li>As <tt>M</tt> linhas seguintes contêm <tt>N</tt> dígitos cada, separados por espaços, de tal forma que o <tt>j</tt>-ésimo dígito localizado na <tt>i</tt>-ésima linha representa o conteúdo do campo de batalha na posição <tt>(i,j)</tt>, conforme a seguinte convenção:
+        <ul>
+          <li><tt>0</tt>: não existe um droide inimigo na posição <tt>(i,j)</tt> do campo de batalha.</li>
+          <li><tt>1</tt>: existe um droide inimigo na posição <tt>(i,j)</tt> do campo de batalha.</li>
+      </ul></li>
+    </ul>
+
+    <h3>Saída</h3>
+    Seu programa deverá imprimir três linhas: 
+    <ul>
+      <li>A primeira linha deverá ter o formato "<tt>Posicao = (X,Y)</tt>", onde <tt>X</tt> é a linha e <tt>Y</tt> é a coluna onde o AT-TE deve ser posicionado.</li>
+      <li>A segunda linha deverá ter o formato "<tt>Droides = D</tt>", onde <tt>D</tt> é igual ao maior número de droides inimigos que podem ser eliminados.</li>
+      <li>A terceira linha deverá ter o formato "<tt>Disparos = d</tt>", onde <tt>d</tt> é igual ao menor número de disparos necessários para eliminar os <tt>D</tt> droides inimigos.</li>
+    </ul>
+    Se existir mais de uma posição no campo de batalha a partir das quais se podem eliminar <tt>D</tt> droides inimigos, escolher a posição que precise do menor número de disparos. Se o empate persistir, a posição impressa na primeira linha da saída deverá ser a menor possível, isto é, dadas duas posições <tt>A = (i,j)</tt> e <tt>B = (p,q)</tt>, <tt>A</tt> é menor que <tt>B</tt> (<tt>A &lt; B</tt>) se <tt>i &lt; p</tt> ou se <tt>i = p</tt> e <tt>j &lt; q</tt>.
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="250px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td>
+          <tt>11 11<br>
+            1 0 0 0 0 0 0 0 0 0 1<br>
+            0 0 0 0 0 0 1 0 0 0 0<br>
+            0 0 1 0 0 0 0 0 1 0 0<br>
+            0 0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 1 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0 1<br>
+            1 0 0 0 1 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 1 0<br>
+            0 1 1 0 0 0 0 1 0 0 0<br>
+            0 0 0 0 0 1 0 0 0 0 0</tt></td><td><tt>
+Posicao = (5,5)<br>
+Droids = 9<br>
+Disparos = 4<br>
+      </tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td>
+          <tt>7 9<br>
+            0 0 0 0 1 0 0 1 0<br>
+            0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0<br>
+            0 1 0 0 0 0 0 0 1<br>
+            0 0 0 0 1 0 0 0 0<br>
+            0 0 1 0 0 0 0 0 0<br>
+            0 0 0 0 1 0 0 0 0</tt></td><td><tt>
+Posicao = (3,4)<br>
+Droids = 7<br>
+Disparos = 3<br>
+      </tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td>
+          <tt>13 10<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 1 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 1 0 0 1 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 1 0 0 0 0 1 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 1 0 1 0 0<br>
+            0 0 0 0 0 0 0 0 0 0<br>
+            0 0 1 0 0 0 0 0 0 0</tt></td><td><tt>
+Posicao = (12,7)<br>
+Droids = 6<br>
+Disparos = 3<br>
+      </tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td>
+          <tt>7 13<br>
+            0 0 0 0 0 0 0 0 0 0 1 0 1<br>
+            0 0 0 0 1 0 0 0 0 0 0 1 0<br>
+            1 0 0 0 1 0 0 0 0 1 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0 0 0 0<br>
+            0 0 0 0 0 0 0 0 0 0 1 0 0<br>
+            0 0 0 0 0 0 0 0 0 0 0 0 0<br>
+            0 0 1 0 0 0 0 0 1 0 0 0 0</tt></td><td><tt>
+Posicao = (2,12)<br>
+Droids = 8<br>
+Disparos = 4<br>
+      </tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td>
+          <tt>11 5<br>
+            1 0 0 0 1<br>
+            0 1 0 0 0<br>
+            0 1 0 1 0<br>
+            0 0 0 0 1<br>
+            0 0 1 1 0<br>
+            0 1 0 0 0<br>
+            1 1 1 0 1<br>
+            0 1 0 0 0<br>
+            1 1 1 0 1<br>
+            0 0 0 0 0<br>
+            1 0 1 0 0</tt></td><td><tt>
+Posicao = (9,1)<br>
+Droids = 11<br>
+Disparos = 3<br>
+      </tt></td></tr>
+    </tbody></table><br>
+ 
+</body></html>

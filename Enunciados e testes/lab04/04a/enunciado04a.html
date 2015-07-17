@@ -1,0 +1,90 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 04a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 04a - Cargo-Bot - Part I</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 13/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 3 <br> <br> <hr> <br>
+
+    <p align="justify">
+      <a href="http://twolivesleft.com/CargoBot/">Cargo-Bot</a> é um jogo onde, através de comandos predefinidos, você programa um braço robótico para mover caixas de uma configuração inicial até uma configuração desejada. Cargo-Bot foi o primeiro jogo desenvolvido inteiramente em um iPad, através do aplicativo <a href="http://twolivesleft.com/Codea/">Codea</a>, um editor de código <i>touch-screen</i> feito exclusivamente para iPads, criado pela empresa <a href="http://twolivesleft.com">TwoLivesLeft</a>.
+    </p>
+    
+    <p align="center">
+      <img src="CargoBot.jpg" height="420px">   <img src="CargoBot2.jpg" height="420px">
+    </p>
+
+    <p align="justify">
+      Para cada configuração do jogo é disponibilizado um determinado número de comandos na <tt>ToolBox</tt>, que podem ser distribuídos em 4 programas, como mostram as imagens acima. Além disso, as caixas possuem cores, que podem ser azul, amarela, vermelha ou verde. Os três comandos básicos são:
+      </p><ul>
+        <li><img src="left.png" width="20px"> = Mover o braço robótico para a esquerda, caso exista posição à esquerda (caso contrário, não faça nada);</li>
+        <li><img src="right.png" width="20px"> = Mover o braço para a direita, caso exista posição à direita (caso contrário, não faça nada);</li>
+        <li><img src="down.png" width="20px"> = Descer o braço robótico e:
+        <ul>
+          <li>Pegar uma caixa, caso exista uma caixa na posição em que o braço se encontra e ele não segura nenhuma caixa;</li>
+          <li>Deixar uma caixa na posição em que o braço se encontra, se ele estava segurando uma caixa;</li>
+          <li>Nada, caso o braço robótico esteja vazio e não exista nenhuma caixa na posição em que o braço se encontra.</li>
+        </ul>
+        Após descer e realizar uma das operações acima, o braço robótico sobe automaticamente.</li>
+      </ul>
+      Além dos comandos básicos, existem três comandos condicionais, que podem ser aplicados sobre um comando básico:
+      <ul>
+        <li><img src="green.png" width="20px"> = Executa o comando básico caso a cor da caixa que ele segura seja a mesma do condicional (neste caso, verde);</li>
+        <li><img src="any.png" width="20px"> = Executa o comando básico caso ele esteja segurando uma caixa (de qualquer cor);</li>
+        <li><img src="none.png" width="20px"> = Executa o comando básico caso ele não esteja segurando nenhuma caixa.</li>
+      </ul>
+      Por fim, existem os comandos para executar um programa (lista de comandos), representados por botões vermelhos com rótulo <tt>Prog N</tt>, que executa os comandos do programa de número <tt>N</tt>. Por exemplo, o comando <img src="prog1.png" width="20px"> executa os comandos existentes na linha com rótulo <tt>Prog 1</tt>.
+    <p></p>
+
+    <p align="justify">
+      Após receber um email de sua autoria reclamando que o jogo está disponível apenas para iOS, a TwoLivesLeft lhe desafiou a criar uma versão do jogo para ser jogado pelo computador.
+    </p>
+
+    <p align="justify">
+      Como todo programa ou jogo normalmente é feito de forma incremental, sua primeira versão do jogo será um pouco mais simples, para ser executada sem interface gráfica.
+Dada uma lista de quantas caixas existem em cada posição e uma lista de comandos básicos, seu programa deve imprimir a quantidade de caixas existentes em cada posição após a execução da lista de comandos, realizados de forma similar ao jogo original.
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada consiste de 2 números inteiros, <tt>X</tt> e <tt>Y</tt>, onde <tt>X</tt> representa o número de posições existentes para empilhamento das caixas, com <tt>2 ≤ X ≤ 10</tt>, e <tt>Y</tt> representa o número máximo de caixas que podem ser empilhadas, com <tt>2 ≤ Y ≤ 20</tt>.</li>
+      <li>A segunda linha da entrada consiste em <tt>X</tt> números inteiros, representando o número de caixas existentes inicialmente em cada posição.</li>
+      <li>A terceira linha da entrada contém diversos caracteres, representando os seguintes comandos básicos do jogo:
+      <ul>
+        <li><tt>L</tt> = <img src="left.png" width="20px">;</li>
+        <li><tt>R</tt> = <img src="right.png" width="20px">;</li>
+        <li><tt>D</tt> = <img src="down.png" width="20px">.</li>
+      </ul>
+      O último caractere da terceira linha será um <tt>*</tt>, indicando fim de comandos.</li>
+      <li>Considere que o braço robótico só pode se mover para uma posição com <tt>Y</tt> caixas empilhadas se ele não estiver segurando nenhuma caixa. Caso contrário, a caixa que ele segura empurrará a pilha com as <tt>Y</tt> caixas, gerando um acidente.</li>
+      <li>Considere que, antes do primeiro comando, o braço robótico encontra-se sempre na posição mais à esquerda e não segura nenhuma caixa.</li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Se um acidente ocorreu durante a execução dos comandos, seu programa deve imprimir apenas "<tt>Um acidente ocorreu</tt>".</li>
+      <li>Caso contrário, seu programa deve imprimir o número de caixas em cada posição após a execução de todos os comandos básicos no seguinte formato: "<tt>N<sub>1</sub> N<sub>2</sub> ... N<sub>X</sub></tt>", onde <tt>N<sub>i</sub></tt> é o número de caixas existentes na <i>i</i>-ésima posição.</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>2 5<br>3 4<br>DRD*</tt></td><td><tt>2 5</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>3 3<br>3 2 3<br>DRR*</tt></td><td><tt>Um acidente ocorreu</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>10 20<br>7 5 3 8 2 1 6 4 3 0<br>DRDLDLRDRDRDLDRRRDRDLLRDLDLDLD*</tt></td><td><tt>5 7 0 10 1 3 5 4 3 0</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>6 7<br>5 4 3 2 1 0<br>DRRRRDLLLDLDRDRRRDLRDLDLDRDRDRDLLLLDLDRDLD*</tt></td><td><tt>7 0 2 4 1 1</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>2 10<br>10 0<br>DRDLDRDLDRDLDRDLDRDLDRDLDRDLDRDLDRDLDRDL*</tt></td><td><tt>0 10</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

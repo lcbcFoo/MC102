@@ -1,0 +1,10 @@
+Sim
+Sim
+Sim
+Nao
+Nao
+Nao
+Nao
+Sim
+Sim
+Sim

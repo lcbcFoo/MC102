@@ -1,0 +1,81 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 04b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 04b - O Lobo de Wall Street</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 13/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 3 <br> <br> <hr> <br>
+
+    <p align="justify">
+      Após cumprir sua pena na prisão pelos crimes de fraude e lavagem de dinheiro, Jordan Belfort — mais conhecido como <i>O Lobo de Wall Street</i> — tornou-se um dos melhores treinadores de vendas dos Estados Unidos. Sua paixão, porém, continuava sendo a bolsa de valores, as drogas e as mulheres. Como não lhe foi permitido obter novamente a licença de corretor de bolsa nos EUA, o caminho que ele encontrou para retornar aos negócios na bolsa de valores foi mudar-se para outro país.
+    </p>
+    <p align="justify">
+      Analisando os mercados dos países com as maiores economias do mundo, ele viu no Brasil um futuro promissor para suas ambições. Após chegar em São Paulo, ele conseguiu obter a licença de corretor de bolsa na Bovespa (Bolsa de Valores de São Paulo). Enquanto corretor, Jordan tem acesso às previsões dos valores das ações de uma companhia para os próximos dias, geradas por sistemas baseados em modelos matemáticos complexos e dados históricos. Agora, ele está procurando alguém que possa lhe ajudar a usar essas previsões para saber o máximo lucro possível que ele pode obter quando comprar e vender as ações de uma determinada companhia.
+    </p>
+    <p align="justify">
+    <!-- Sabendo da chegada de Jordan Belfort em S&atilde;o Paulo, o FBI (<i>Federal Bureau of Investigation</i>) alertou a Pol&iacute;cia Federal brasileira e estes come&ccedil;aram a vigiar as opera&ccedil;&otilde;es banc&aacute;rias de Jordan. Tamb&eacute;m Jordan foi advertido (por seu amigo detetive) que estava sendo vigiado, ent&atilde;o -->  
+      A fim de reduzir suas movimentações na bolsa e não levantar suspeitas, ele utiliza duas regras básicas: (1) em um período de <tt>D</tt> dias, ele realiza no máximo duas operações de compra e venda de ações; e (2) ele nunca compra mais ações se ainda existem ações para vender. Por exemplo, suponha que ele possui as previsões dos valores das ações da Petrobras (código PTR4 na Bovespa) para os próximos 10 dias, tal como ilustrado na tabela abaixo. Além disso, suponha que ele possui um capital inicial de R$2500. Então, tendo em vista suas regras, Jordan obteria o maior lucro comprando 250 ações no primeiro dia e vendendo-as no sexto dia, acumulando R$11250, e depois comprando 562 ações no sétimo dia e vendendo-as no décimo dia, acumulando R$28110. Note que o número de ações comercializadas é sempre dado por um número inteiro.
+    </p>
+
+    <p align="center">
+      </p><table align="center" border="0" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td>
+          <table border="1" cellpadding="0" cellspacing="0">
+            <tbody><tr align="center"><td width="50px"><b>Dia</b></td><td width="170px"><b>Valor da ação (R$)</b></td></tr>
+            <tr valign="top" align="center"><td>1</td><td>10</td></tr>
+            <tr valign="top" align="center"><td>2</td><td>20</td></tr>
+            <tr valign="top" align="center"><td>3</td><td>15</td></tr>
+            <tr valign="top" align="center"><td>4</td><td>35</td></tr>
+            <tr valign="top" align="center"><td>5</td><td>30</td></tr>
+            <tr valign="top" align="center"><td>6</td><td>45</td></tr>
+            <tr valign="top" align="center"><td>7</td><td>20</td></tr>
+            <tr valign="top" align="center"><td>8</td><td>40</td></tr>
+            <tr valign="top" align="center"><td>9</td><td>35</td></tr>
+            <tr valign="top" align="center"><td>10</td><td>50</td></tr>
+          </tbody></table>
+        </td>
+        <td>
+          <img src="curva.png" style="padding-top: 20px;padding-left: 50px" height="270px">
+        </td>
+      </tr>
+      </tbody></table>
+    <p></p>
+
+    <p align="justify">
+      A tarefa deste laboratório é desenvolver um programa que, dadas as previsões dos valores das ações de uma companhia para os próximos <tt>D</tt> dias e um capital inicial, determine o capital final máximo que se pode obter após as operações de compra e venda de ações (levando em conta as 2 regras estabelecidas por Jordan).
+    </p>
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>Na primeira linha da entrada são dados dois números inteiros <tt>D</tt> (<tt>1 ≤ D ≤ 100</tt>) e <tt>C</tt> (<tt>1000 ≤ C ≤ 50000</tt>) que representam, respectivamente, o número de dias para os quais se têm previsões dos valores das ações e o capital inicial de Jordan.</li>
+      <li>A linha seguinte contém <tt>D</tt> números inteiros <tt>X<sub>1</sub> X<sub>2</sub> ... X<sub>D</sub></tt>, onde <tt>X<sub>i</sub></tt> indica o valor de uma ação no <i>i</i>-ésimo dia (<tt>1 ≤ X<sub>i</sub> ≤ 1000</tt>).</li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Se existir pelo menos uma compra e venda que gere lucro, seu programa deve imprimir uma linha no formato "<tt>Capital final = R$X</tt>", onde <tt>X</tt> é o capital final máximo que se pode obter.</li>
+      <li>Se não existir nenhuma compra e venda que gere lucro, seu programa deve imprimir uma linha no formato "<tt>Melhor nao investir agora, cara!</tt>".</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="440px"><b><tt>Entrada</tt></b></td><td width="280px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>10 2500<br>10 20 15 35 30 45 20 40 35 50</tt></td><td><tt>Capital final = R$28110</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>11 3192<br>26 45 68 76 87 87 95 104 121 125 130</tt></td><td><tt>Capital final = R$15880</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>12 4649<br>85 10 91 92 86 16 57 84 83 93 82 92</tt></td><td><tt>Capital final = R$248133</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>13 2548<br>96 96 16 96 96 96 96 19 96 96 69 96 96</tt></td><td><tt>Capital final = R$77099</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>16 6500<br>200 185 140 130 130 111 100 93 93 47 35 30 28 25 25 20</tt></td><td><tt>Melhor nao investir agora, cara!</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

@@ -1,0 +1,137 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 06a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 06a - Raio Sugestor</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 27/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 4 <br> <br> <hr> <br>
+
+  <div align="center"><img src="good_news.jpg" title="https://www.youtube.com/watch?v=z6ODMDtG6-I" width="300px"></div>
+    
+    <p align="justify">
+      Boas novas, pessoal! O professor Farnsworth acabou de inventar um aparato que vai salvar os negócios! A invenção consiste em um transmissor de raios sugestores. Pessoas sob o efeito deste raio sentem uma enorme vontade de contratar os serviços da <a href="http://pt.wikipedia.org/wiki/Planet_Express" target="_blank">Planet Express</a>, mesmo que (ainda) não tenha nada para enviar.
+    </p>
+
+    <p align="justify">
+      Infelizmente, o orçamento da empresa está muito apertado, então o professor possui verba para construir apenas um aparato. Porém, será suficiente, desde que ele seja capaz de encontrar um bom lugar para instalá-lo. Depois de muita pesquisa, determinou-se a densidade populacional da grande cidade de <a href="http://pt-br.futuramabr.wikia.com/wiki/Nova_Nova_York" target="_blank">Nova Nova York</a>.
+      Por sorte, a cidade é bem planejada, então ela e suas quadras podem ser representadas através de uma matriz, onde cada posição corresponde a uma quadra na cidade. Os valores da matriz são números naturais correspondentes à quantidade de pessoas que vivem em cada quadra.
+    </p>
+
+  <p align="justify">
+      O que resta fazer é, com os dados de densidade populacional e o alcance da máquina em mãos, determinar o lugar para posicionar o aparelho, de forma que ele atinja a maior quantidade possível de pessoas.
+    </p>
+    
+    <p align="justify">
+      O transmissor possui uma natureza tão estranha que seu alcance tem o formato de um quadrado, ao invés de um círculo, e deve ser posicionado no meio de uma quadra. Se o alcance da máquina for 0, apenas as pessoas na quadra onde ela for instalada sofrerão sugestão. Se o alcance for 1, a área afetada terá o formato de um quadrado <tt>3 x 3</tt>, se o alcance for 2, a área afetada terá o formato de um quadrado <tt>5 x 5</tt>, e assim por diante. O transmissor não afeta áreas fora da cidade.
+    </p>
+    
+    <h3>Exemplo</h3>
+    
+    <p align="justify">
+      Numa cidade com a população distribuída como abaixo e um transmissor com alcance 1, o posicionamento deve ser feito na linha 3 e na coluna 4, onde o raio afetará 688 pessoas, como mostrado abaixo:
+    </p>
+
+  <table align="center">
+    <tbody><tr>
+      <td><img src="plot.png" width="370px"></td>
+      <td valign="center">  ►  </td>
+      <td><img src="plot_select.png" width="370px"></td>
+    </tr>
+    </tbody></table>
+
+    <h3>Entrada</h3>
+
+      Seu programa deve receber uma linha com três números inteiros não negativos, seguidos de uma quantidade variável de números inteiros não negativos, tais que:
+      <ul>
+        <li>Os dois primeiros números correspondem ao número de linhas (<tt>m</tt>) e colunas (<tt>n</tt>) da matriz de densidade, tais que <tt>1 ≤ m,n ≤ 50</tt>, e o terceiro ao raio do transmissor (<tt>r</tt>), tal que <tt>0 ≤ r ≤ (min{m,n}-1)/2</tt>;</li>
+        <li>As próximas <tt>m</tt> linhas contêm <tt>n</tt> números cada, correspondentes à quantidade de habitantes por quadra (limitada a 10.000 habitantes por quadra).</li>
+      </ul>  
+
+    <h3>Saída</h3>
+
+      Seu programa deve imprimir um número na saída, indicando a quantidade máxima de pessoas que podem ser afetadas pelo raio sugestor.
+ 
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody>
+    <tr align="center">
+      <td width="15px"><b><tt>#</tt></b></td>
+      <td width="350px"><b><tt>Entrada</tt></b></td>
+      <td width="150px"> <b><tt>Saída</tt></b></td>
+    </tr>
+      
+    <tr valign="top" align="left">
+      <td>1</td>
+      <td><tt>5 6 1 <br>
+                  10 55 82  44 78 23 <br>
+                  16 63 90  57 70 30 <br>
+                  22 71 100 70 70 37 <br>
+                  14 68 95  66 70 35 <br>
+                  9  40 75  50 50 29
+      </tt></td>
+      <td><tt>688</tt></td>
+    </tr>
+
+    <tr valign="top" align="left">
+      <td>2</td>
+      <td><tt>4 5 1 <br>
+                  10 9  8  7  6 <br>
+                  10 11 12 13 14 <br>
+                  3  5  2  8  1 <br>
+                  10 10 11 10 10
+      </tt></td>
+      <td><tt>82</tt></td>
+    </tr>
+    
+    <tr valign="top" align="left">
+      <td>3</td>
+      <td><tt>3 4 1 <br>
+                  1 1 1 1 <br>
+                  3 3 2 2 <br>
+                  0 1 0 0
+      </tt></td>
+      <td><tt>12</tt></td>
+    </tr>
+
+    <tr valign="top" align="left">
+      <td>4</td>
+      <td><tt>6 7 2<br>
+                  1001 500  905  1300 455  889  400 <br>
+                  960  1024 512  302  796  1536 1000 <br>
+                  185  1560 1317 612  903  830  609 <br>
+                  1331 754  1674 862  1337 1101 982 <br>
+                  766  488  573  710  676  906  831 <br>
+                  1167 1183 635  1461 1574 589  833
+      </tt></td>
+      <td><tt>23915</tt></td>
+    </tr>
+    
+    <tr valign="top" align="left">
+      <td>5</td>
+      <td><tt>5 6 0 <br>
+                  10 55 82 44 78 23 <br>
+                  16 63 90 57 70 30 <br>
+                  22 71 100 70 70 37 <br>
+                  14 68 95 66 70 35 <br>
+                  9 40 75 50 50 29
+      </tt></td>
+      <td><tt>100</tt></td>
+    </tr>
+      </tbody>
+    </table>
+ 
+  
+
+</body></html>

@@ -1,0 +1,389 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 08b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 08b - Duzentos e Cinquenta e Cinco Tons de Cinza</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 11/05/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 6 <br> <br> <hr> <br>
+
+    <p align="justify">
+      Uma imagem digital é uma representação numérica de uma imagem bidimensional, de forma a permitir seu armazenamento, transferência e processamento. Processamento de imagens é um tipo de processamento de dados em que tanto a entrada quanto a saída são imagens.
+    </p>
+
+    <p align="justify">
+      Podemos representar uma imagem digital através de uma matriz, em que cada um de seus elementos representa a intensidade de cor em um ponto (pixel) da imagem. Assim, seja <tt>f</tt> uma imagem digital qualquer, dizemos que o pixel na posição (x,y) tem intensidade f(x,y). Considerando imagens em tons de cinza, o valor de cada elemento da matriz representa uma intensidade de cinza. Quanto maior a intensidade, mais clara é a cor representada. Desta forma, a intensidade máxima representa a cor branca, enquanto a intensidade mínima representa a cor preta. 
+    </p>
+
+    <p align="justify">
+      Neste laboratório, você deverá implementar 4 funções de processamento de imagem. Para cada função, tanto a entrada quanto a saída serão imagens no formato <a href="http://en.wikipedia.org/wiki/Portable_graymap" target="_blank">PGM</a>. O formato PGM representa imagens em tons de cinza de forma matricial, em que a intensidade de cada pixel está no intervalo <tt>[0..MaxV]</tt>, onde <tt>MaxV</tt> é intensidade máxima especificada no arquivo, ou seja, a intensidade que representa a cor branca. Por exemplo, para <tt>MaxV = 10</tt>, os pixels da imagem podem ter a cor preta, com intensidade 0, a cor branca, com intensidade 10, e mais 9 tons intermediários de cinza, representados pelas intensidades no intervalo <tt>[1..9]</tt>. O valor máximo para <tt>MaxV</tt> permitido no formato PGM é 255.
+    </p>
+    
+    <p align="justify">
+      Os arquivos de casos de testes de entrada (*.in) e de saída (*.res) podem ser visualizados normalmente como imagens no ambiente Linux (com um duplo clique no arquivo ou usando um editor de imagens como o Gimp, por exemplo).
+    </p>
+    
+    <p align="justify">
+      Disponibilizamos um <a href="aux/esboco.c">código</a> (clique para acessar) que possui as seguintes funções já implementadas:
+    </p>
+    
+    <p align="justify">
+      <tt>int ler_pgm(int img[][400],int *W, int *H, int *MaxV, int *F, double *c, double *gama);</tt>
+    </p>
+    <ul>
+      <p align="justify">
+  </p><li>Esta função faz a leitura de uma imagem em formato PGM. A leitura é feita a partir da entrada padrão.
+      <p></p>
+    </li></ul>
+    <p align="justify">
+      <tt>void escrever_pgm(int img[][400], int W, int H, int MaxV);</tt>
+    </p>
+    <ul>
+      <p align="justify">
+        </p><li>Esta função faz a escrita de uma imagem em formato PGM. A escrita é feita na saída padrão.
+      <p></p>
+    </li></ul>
+    <p align="justify">
+      <tt>int main(); </tt>
+    </p>
+    <ul>
+      <p align="justify">
+  </p><li>Função principal que controla a escolha do filtro que será aplicado em cada execução do programa.
+      <p></p>
+    </li></ul>
+    <p align="justify">
+      Você deverá fazer a implementação das funções de processamento de imagens utilizando os esboços das funções disponíveis no mesmo código fonte. Você não deve modificar as funções já existentes.
+    </p>
+    <p align="justify">
+      Para este problema, um arquivo PGM encontra-se no seguinte formato:
+    </p>
+    
+    <ul>
+      <li>A primeira linha contém a string "<tt>P2</tt>", que é o identificador do formato;</li>
+      <li>A segunda linha do arquivo PGM conterá um comentário com um valor inteiro <tt>F</tt>, que indica qual a função deve ser executada, e dois valores reais <tt>c</tt> e <tt>gama</tt> (<tt>γ</tt>), que indicam os parâmetros a serem passados para o Filtro 1 (os demais filtros não usam este dois valores);</li>
+      <li>A terceira linha contém três números <tt>W</tt>, <tt>H</tt> e <tt>MaxV</tt> que indicam, respectivamente, a largura, a altura e a intensidade máxima da imagem, ou seja, a intensidade que representa a cor branca;</li>
+      <li>O restante do arquivo contém <tt>W × H</tt> números inteiros <tt>I</tt>, <tt>0 ≤ I ≤ MaxV</tt>, separados por espaços em branco e/ou quebras de linha. Estes números representam a matriz de intensidades da imagem.</li>
+    </ul>
+    
+    <p align="justify">A seguir é mostrado um exemplo de arquivo PGM: </p>
+    <tt>
+      P2<br>
+      # 4 0.2 0.53<br>
+      4 5 255<br>
+      100 200 100 200<br>
+      50 160 50 160<br>
+      20 130 20 130<br>
+      10 110 10 110<br>
+      80 100 0 25<br>
+    </tt>
+    
+    <p align="justify">
+      Abaixo são explicadas as quatro funções que devem ser implementadas.
+    </p>
+    
+    <h3>Função 1: Transformação de Potência (gama)</h3>
+    
+    <p align="justify">
+      <tt>void potencia(int img[][MAX_TAM], int W, int H, int MaxV, double c, double gama);</tt>
+    </p>
+    
+    <p align="justify">
+      Esta função serve para mapear faixas estreitas de valores em faixas mais amplas. Diferentes monitores possuem diferentes fatores de correção gama, mostrando imagens diferentes. A equação abaixo descreve uma transformação de potência, aplicada em cada elemento da imagem <tt>f</tt>:
+    </p>
+
+    <tt>f'(x,y) = c × f(x,y)<sup>γ</sup></tt>
+    
+    <p align="justify">
+      Por exemplo, ao se aplicar este filtro em uma imagem <tt>f</tt> com <tt>MaxV = 10</tt>, usando os parâmetros <tt>c = 2</tt> e <tt>γ = 0,7</tt>, as intensidades dos pixels são transformados da seguinte forma:
+    </p>
+    <ul>
+      <li><tt>f(x,y) = 0 </tt> → <tt>f'(x,y) = 2×0<sup>0,7</sup> = 0</tt>;</li>
+      <li><tt>f(x,y) = 1 </tt> → <tt>f'(x,y) = 2×1<sup>0,7</sup> = 2</tt>;</li>
+      <li><tt>f(x,y) = 2 </tt> → <tt>f'(x,y) = 2×2<sup>0,7</sup> = 2×1,62 = 3,24 ≈ 3</tt>;</li>
+      <li><tt>f(x,y) = 3 </tt> → <tt>f'(x,y) = 2×3<sup>0,7</sup> = 2×2,15 = 4,31 ≈ 4</tt>;</li>
+      <li><tt>f(x,y) = 4 </tt> → <tt>f'(x,y) = 2×4<sup>0,7</sup> = 2×2,63 = 5,27 ≈ 5</tt>;</li>
+      <li><tt>f(x,y) = 5 </tt> → <tt>f'(x,y) = 2×5<sup>0,7</sup> = 2×3,08 = 6,17 ≈ 6</tt>;</li>
+      <li><tt>f(x,y) = 6 </tt> → <tt>f'(x,y) = 2×6<sup>0,7</sup> = 2×3,50 = 7,01 ≈ 7</tt>;</li>
+      <li><tt>f(x,y) = 7 </tt> → <tt>f'(x,y) = 2×7<sup>0,7</sup> = 2×3,90 = 7,80 ≈ 7</tt>;</li>
+      <li><tt>f(x,y) = 8 </tt> → <tt>f'(x,y) = 2×8<sup>0,7</sup> = 2×4,28 = 8,57 ≈ 8</tt>;</li>
+      <li><tt>f(x,y) = 9 </tt> → <tt>f'(x,y) = 2×9<sup>0,7</sup> = 2×4,65 = 9,31 ≈ 9</tt>;</li>
+      <li><tt>f(x,y) = 10</tt> → <tt>f'(x,y) = 2×10<sup>0,7</sup> = 2×5,01 = 10,02 ≈ 10</tt>;</li>
+    </ul>
+    
+    
+    <p align="justify">
+      Um gama maior que 1 aumenta o contraste nos valores baixos de intensidade, enquanto um gama menor que 1, aumenta o contrate nos valores de intensidade mais altos. No exemplo do babuíno, abaixo, foi usado um gama de 0,7.
+    </p>
+    
+    <p>Observações:</p>
+    <ul>
+      <li>A fórmula acima resulta em números reais. Como o formato PGM só aceita intensidades inteiras, deve-se converter o número utilizando a função <tt>floor</tt> da biblioteca matemática (<tt>math.h</tt>).</li>
+      <li> Lembre-se que um pixel não pode ter valor inferior a <tt>0</tt> e nem valor superior a <tt>MaxV</tt>. Portanto, se o resultado de um ponto for menor que <tt>0</tt>, ele deve receber o valor <tt>0</tt>. Da mesma forma, se o resultado for maior que <tt>MaxV</tt>, ele deve receber o valor <tt>MaxV</tt>.</li>
+    </ul>
+    
+    
+    <i>Exemplo 1</i>: Potência
+    <table style="font-family: monospace; text-align: left; font-size: 14px" border="1" cellpadding="4" cellspacing="0">
+      <tbody>
+  <tr align="center">
+    <td> <b><em> Imagem de entrada </em></b> </td>
+    <td> <b><em> Imagem de saída </em></b> </td>
+  </tr>
+  <tr valign="top">
+    <td> P2<br>
+      # 1 2 0.7<br>
+      5 5 10<br>
+      1 9 10 2 6<br>
+      1 8 7 2 5<br>
+      4 9 10 10 2<br>
+      0 0 1 2 3<br>
+      0 10 0 10 10<br>
+    </td>
+    <td> <br>P2<br>
+      5 5 10<br>
+      2 9 10 3 7<br>
+      2 8 7 3 6<br>
+      5 9 10 10 3<br>
+      0 0 2 3 4<br>
+      0 10 0 10 10<br>
+    </td>
+  </tr>
+      </tbody>
+    </table>  
+    
+    <br>
+    
+    <i>Visualização</i>:
+    <table border="1">
+      <tbody>
+        <tr>
+          <th>Imagem de entrada</th>
+          <th>Imagem de saída</th>
+        </tr>
+        <tr>
+          <td> <img src="baboon_pot1.png"> </td>
+          <td> <img src="baboon_pot2.png"> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Função 2: Espelhamento</h3>
+    
+    <p align="justify">
+      <tt>void Espelhamento(int img[][MAX_TAM], int W, int H);</tt>
+    </p>
+    
+    <p align="justify">
+      Esta função espelha a metade direita da imagem na metade esquerda.
+    </p>
+    
+    <i>Exemplo 2</i>: Espelhamento
+    <table style="font-family: monospace; text-align: left; font-size: 14px" border="1" cellpadding="4" cellspacing="0">
+      <tbody>
+  <tr align="center">
+    <td> <b><em> Imagem de entrada </em></b> </td>
+    <td> <b><em> Imagem de saída </em></b> </td>
+  </tr>
+  <tr valign="top">
+    <td> P2<br>
+      # 2 <br>
+      5 5 10<br>
+      1 9 10 2 6<br>
+      1 8 7 2 5<br>
+      4 9 10 10 2<br>
+      0 0 1 2 3<br>
+      0 10 0 10 10<br>
+    </td>
+    <td> <br>P2<br>
+      5 5 10<br>
+      6 2 10 2 6<br>
+      5 2 7 2 5<br>
+      2 10 10 10 2<br>
+      3 2 1 2 3<br>
+      10 10 0 10 10<br>
+    </td>
+  </tr>
+      </tbody>
+    </table>  
+    
+    <br>
+    
+    <i>Visualização</i>:
+    <table border="1">
+      <tbody>
+        <tr>
+          <th>Imagem de entrada</th>
+          <th>Imagem de saída</th>
+        </tr>
+        <tr>
+          <td> <img src="lena_esp1.png"> </td>
+          <td> <img src="lena_esp2.png"> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+    <h3>Função 3: Redução de Ruído com Filtro Gaussiano</h3>
+    
+    <p align="justify">
+      <tt>void reducaoRuido(int img[][MAX_TAM], int W, int H, int MaxV);</tt>
+    </p>
+    
+    <p align="justify">
+      Para este problema, definimos a vizinhança de um pixel <tt>(x,y)</tt> como o conjunto de pixels pertencentes à região <tt>3x3</tt> que tem centro em <tt>(x,y)</tt>.
+    </p>
+    
+    <div align="center"><img src="vizinho.png" heigth="400" width="400,"></div>
+    
+    <p align="justify">
+      A função do Filtro Gaussiano é reduzir o ruído e/ou borrar a imagem. Ele é feito por meio de um filtro representado pela matriz abaixo:
+    </p>
+    
+    <div align="center"><img src="gauss.png" width="300"></div>
+    
+    
+    <p align="justify">
+      Dado um pixel na posição (x,y), cuja intensidade atual é <tt>f(x,y)</tt>, o novo valor de sua intensidade, <tt>f'(x,y)</tt>, se dá pela soma da multiplicação "ponto-a-ponto" entre a região de vizinhança de <tt>(x,y)</tt> e o filtro dado acima. Por exemplo, suponha que queremos utilizar o filtro gaussiano no pixel <tt>P</tt> na posição <tt>(9, 21)</tt> da imagem de entrada. 
+    </p>
+    
+    <div align="center"><img src="ponto.png" heigth="400" width="400,"></div>
+    
+    <p align="justify">
+      O valor de intensidade no ponto <tt>P'</tt> na posição <tt>(9, 21)</tt> da imagem resultante após o filtro gaussiano é:
+    </p>
+    
+    <tt>f'(9, 21) = ((1 * f(8, 20)) + (2 * f(9, 20)) + (1 * f(10, 20)) + (2 * f(8, 21)) + (4 * f(9, 21)) + (2 * f(10, 21)) + (1 * f(8, 22)) + (2 * f(9, 22)) + (1 * f(10, 22)))/16<br><br>
+      f'(9, 21) = (31 + 2 * 9 + 13 + 2 * 16 + 4 * 25 * 2 * 19 + 20 + 2 * 14 + 3)/16 <br><br>
+      f'(9, 21) = 17,6875 ≈ 17</tt><br>
+    
+    <br>
+    Observação:
+    <ul>
+      <li> Para este filtro, considere que os pontos de borda da imagem não possuem vizinhança e nenhuma operação deve ser realizada sobre eles, ou seja, os valores destes pontos devem ser os mesmos na imagem final;</li>
+      <li>Assim como no Filtro 1, este filtro pode resultar em intensidades não inteiras. Como o formato PGM só aceita intensidades inteiras, deve-se converter o número utilizando a função <tt>floor</tt> da biblioteca matemática (<tt>math.h</tt>).</li>
+    </ul>
+    
+    <i>Exemplo 3</i>: Redução de ruído
+    <table style="font-family: monospace; text-align: left; font-size: 14px" border="1" cellpadding="4" cellspacing="0">
+      <tbody>
+  <tr align="center">
+    <td> <b><em> Imagem de entrada </em></b> </td>
+    <td> <b><em> Imagem de saída </em></b> </td>
+  </tr>
+  <tr valign="top">
+    <td> P2 <br>
+      # 3 <br>
+      10 10 10 <br>
+      6 2 5 10 10 10 7 8 4 8 <br>
+      8 8 9 10 10 10 4 3 10 1 <br>
+      10 2 0 10 10 10 5 4 4 7 <br>
+      10 3 5 10 10 10 7 2 8 7 <br>
+      10 10 10 10 10 10 10 10 10 7 <br>
+      8 10 6 10 10 10 5 9 7 4 <br>
+      5 2 3 10 10 10 4 2 9 6 <br>
+      3 4 0 10 10 10 3 4 0 4 <br>
+      0 3 3 10 10 10 10 3 1 5 <br>
+      8 1 3 10 10 10 10 3 7 6 <br>
+    </td>
+    <td> <br>P2 <br>
+      10 10 10 <br>
+      6 2 5 10 10 10 7 8 4 8 <br>
+      8 5 6 8 10 8 6 5 5 1 <br>
+      10 5 5 8 10 8 5 4 5 7 <br>
+      10 6 6 8 10 9 7 5 6 7 <br>
+      10 8 8 9 10 9 8 8 7 7 <br>
+      8 7 7 9 10 9 7 7 7 4 <br>
+      5 4 5 8 10 8 5 4 5 6 <br>
+      3 2 4 7 10 8 5 3 3 4 <br>
+      0 2 4 8 10 9 7 4 3 5 <br>
+      8 1 3 10 10 10 10 3 7 6 <br>
+    </td>
+  </tr>
+      </tbody>
+    </table>  
+    
+    <br>
+    
+    <i>Visualização</i>:
+    <table border="1">
+      <tbody>
+        <tr>
+          <th>Imagem de entrada</th>
+          <th>Imagem de saída</th>
+        </tr>
+        <tr>
+          <td> <img src="dino_gauss1.png"> </td>
+          <td> <img src="dino_gauss2.png"> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Função 4: Rotação de 90°</h3>
+    
+    <p align="justify">
+      <tt>void rotacao(int img[][MAX_TAM], int W, int H);</tt>
+    </p>
+    
+    <p align="justify">
+      Esta função rotaciona a imagem 90° para a esquerda.
+    </p>
+       
+    <i>Exemplo 4</i>: Rotação de 90°
+    <table style="font-family: monospace; text-align: left; font-size: 14px" border="1" cellpadding="4" cellspacing="0">
+      <tbody>
+  <tr align="center">
+    <td> <b><em> Imagem de entrada </em></b> </td>
+    <td> <b><em> Imagem de saída </em></b> </td>
+  </tr>
+  <tr valign="top">
+    <td> P2<br>
+      # 4<br>
+      5 5 10<br>
+      1 9 10 2 6<br>
+      1 8 7 2 5<br>
+      4 9 10 10 2<br>
+      0 0 1 2 3<br>
+      0 10 0 10 10<br>
+    </td>
+    <td> <br>P2 <br>
+      5 5 10 <br>
+      6 5 2 3 10 <br>
+      2 2 10 2 10 <br>
+      10 7 10 1 0 <br>
+      9 8 9 0 10 <br>
+      1 1 4 0 0 <br>
+    </td>
+  </tr>
+      </tbody>
+    </table>  
+    
+    <br>
+    
+    <i>Visualização</i>:
+    <table border="1">
+      <tbody>
+        <tr>
+          <th>Imagem de entrada</th>
+          <th>Imagem de saída</th>
+        </tr>
+        <tr>
+          <td> <img src="starry_night_rot1.png"> </td>
+          <td> <img src="starry_night_rot2.png"> </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+  
+
+</body></html>

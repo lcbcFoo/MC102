@@ -1,0 +1,11 @@
+integralizacao 6
+curricular 2
+cumprimento 1
+disciplina 1
+disciplinas 1
+exigencias 1
+informacao 1
+informacoes 1
+respectivos 1
+semestralmente 1
+universidade 1

@@ -1,0 +1,9 @@
+Nao
+Nao
+Nao
+Sim
+Nao
+Nao
+Nao
+Nao
+Nao

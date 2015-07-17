@@ -1,0 +1,100 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 07a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 07a - Cargo-Bot - Part II</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 04/05/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 5 <br> <br> <hr> <br>
+
+    <p align="justify">
+      Após a aprovação da primeira versão do jogo  <a href="http://twolivesleft.com/CargoBot/">Cargo-Bot</a> feita por você, os responsáveis pela <a href="http://twolivesleft.com">TwoLivesLeft</a> lhe desafiaram a adicionar mais funcionalidades do jogo original. Os comandos básicos, a detecção de um acidente e o funcionamento do braço mecânico continuam como descritos no <a href="../04a/enunc.html">Laboratório 04a</a>.
+    </p>
+    
+    <p align="justify">
+      Agora, ao invés de apenas um programa, ou seja, apenas uma sequência de comandos, a nova versão do Cargo-Bot poderá conter até 9 programas diferentes, que serão executados numa sequência pré-determinada. Cada programa conterá apenas comandos básicos ou condicionais (considere que um programa nunca chama outro).
+      </p>
+    
+    <p align="justify">
+      Além disso, as caixas agora podem ser de três cores diferentes: azul, que será representada pela letra <tt>B</tt> (blue), verde, que será representada pela letra <tt>G</tt> (green) e amarelo, que será representada pela letra <tt>Y</tt> (yellow). Por exemplo, a configuração de caixas da imagem abaixo, supondo que o número máximo de caixas que podem ser empilhadas é 6, será representada da seguinte forma em sua versão do Cargo-Bot:
+    </p>
+    
+    <p align="center">
+      <img src="caixas.jpg"><br>
+      <tt>.......</tt><br>
+      <tt>.B...B.</tt><br>
+      <tt>.B.G.G.</tt><br>
+      <tt>.GBB.G.</tt><br>
+      <tt>.BGBGG.</tt><br>
+      <tt>.GBGBB.</tt>
+    </p>
+    
+    <p align="justify">
+      Note que a ausência de caixas em uma posição é representada pelo caractere ponto ".". Além disso, note que o número de linhas da representação é igual ao número máximo de caixas que podem ser empilhadas.
+    </p>
+
+    <p align="justify">
+      Por fim, a nova versão do Cargo-Bot poderá utilizar condicionais para realização dos comandos básicos dos programas, conforme explicado anteriormente. Os comandos condicionais podem ser:
+      </p><ul>
+        <li><tt>B,G,Y</tt>: realiza o comando caso a caixa que o braço mecânico segura seja da mesma cor que o condicional;</li>
+        <li><tt>A</tt>: realiza o comando caso o braço mecânico esteja segurando uma caixa qualquer;</li>
+        <li><tt>N</tt>: realiza o comando básico caso o braço mecânico não esteja segurando uma caixa.</li>
+      </ul> 
+
+<!--
+
+      Os condicionais e os comandos de um programa estar&atilde;o representados na vers&atilde;o para computador sempre em duas linhas seguidas, sendo a primeira linha os condicionais e a segunda os comandos. Se o <tt>i</tt>-&eacute;simo caractere da primeira linha &eacute; do tipo <tt>B,G,Y,A</tt> ou <tt>N</tt>, ent&atilde;o o <tt>i</tt>-&eacute;simo comando b&aacute;sico da segunda linha possui um condicional que deve ser verificado antes de ser executado. Caso contr&aacute;rio existir&aacute; naquela posi&ccedil;&atilde;o um caractere ponto ".", implicando que o <tt>i</tt>-&eacute;simo comando n&atilde;o est&aacute; condicionado e deve ser executado normalmente. 
+
+-->
+
+Os comandos básicos e os comandos condicionais de um programa serão representado numa única linha, sendo que o comando básico seguido ao condicional só deve ser executado se a condição testada for verdadeira. Por exemplo, os comandos do programa da imagem abaixo serão representados da seguinte forma em sua versão do Cargo-Bot: 
+    <p></p>
+    
+    <p align="center">
+      <img src="condicionais.png"><br>
+      <tt>DLBDRRYDL*</tt>
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada consistirá de 5 números inteiros, <tt>X</tt> <tt>Y</tt> <tt>P</tt> <tt>C</tt> <tt>E</tt>, onde:
+      <ul>
+        <li><tt>X</tt> representa o número de posições existentes para empilhamento das caixas, com <tt>2 ≤ X ≤ 10</tt>;</li>
+        <li><tt>Y</tt> representa o número máximo de caixas que podem ser empilhadas, com <tt>2 ≤ Y ≤ 10</tt>;</li>
+        <li><tt>P</tt> representa o número de programas existentes, com <tt>1 ≤ P ≤ 9</tt>;</li>
+        <li><tt>C</tt> representa o número máximo de comandos (básicos e condicionais) em um programa, com <tt>1 ≤ C ≤ 60</tt>.</li>
+        <li><tt>E</tt> representa o número de execuções de programas, com <tt>1 ≤ E ≤ 60</tt>.</li>
+      </ul>
+      </li><li>As próximas <tt>Y</tt> linhas conterão <tt>X</tt> caracteres cada, representando o estado inicial das caixas;</li>
+      <li>A próxima linha, contendo <tt>E</tt> dígitos entre <tt>1</tt> e <tt>P</tt>, representará a ordem em que os programas serão executados. Note que um programa pode ser executado múltiplas vezes.
+      </li><li>Por fim, existirão <tt>P</tt> linhas, uma para cada programa, com no máximo <tt>C</tt> caracteres representando os comandos (básicos e condicionais) e um caractere extra, <tt>*</tt>, indicando fim da lista de comandos.</li>
+      <li>Assim como na primeira versão do Cargo-Bot, considere que, antes do primeiro comando do primeiro programa, o braço robótico encontra-se na posição mais à esquerda e não segura nenhuma caixa.</li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Se um acidente ocorreu durante a execução dos comandos, seu programa deve imprimir apenas "<tt>Um acidente ocorreu</tt>".</li>
+      <li>Caso contrário, seu programa deve imprimir a configuração final das caixas após a execução de todos os comandos, com <tt>Y</tt> linhas e <tt>X</tt> colunas.</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>7 6 7 20 38<br>.......<br>.B...B.<br>.B.G.G.<br>.GBB.G.<br>.BGBGG.<br>.GBGBB.<br>21212721276167676761365232364246464256<br>BLBLBLBLBLBLBD*<br>LLLLLLRD*<br>LLLLLLRRND*<br>LLLLLLRRRND*<br>RRRRRRLLND*<br>RRRRRRLD*<br>GRGRGRGRGRGRGD*</tt></td><td><tt>.......<br>B....BG<br>BG...BG<br>BG...BG<br>BG...BG<br>BG...BG</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>3 3 1 10 10<br>Y..<br>G..<br>B..<br>1111111111<br>DARBRNL*</tt></td><td><tt>..Y<br>..G<br>..B</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>7 6 4 12 25<br>.......<br>.......<br>BBB....<br>BBB....<br>BBB....<br>BBB....<br>1121212312121212412121212<br>DNR*<br>BRBRBRDLLL*<br>LLLLLR*<br>LLLLLRR*</tt></td><td><tt>Um acidente ocorreu</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>6 7 2 10 19<br>......<br>G.....<br>G.....<br>G.....<br>G.....<br>G.....<br>G.....<br>1111121111211121121<br>DRGDNL*<br>NR*<br></tt></td><td><tt>......<br>......<br>......<br>......<br>......<br>......<br>GGGGGG</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>7 6 3 21 25<br>.......<br>.......<br>.......<br>..Y....<br>..Y...Y<br>..YY..Y<br>2221222122212222132213221<br>D*<br>NRNDALALAL*<br>NRNDNRNDNRNDNRNDNRND*</tt></td><td><tt>Y......<br>Y......<br>Y......<br>Y......<br>Y......<br>Y......<br></tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

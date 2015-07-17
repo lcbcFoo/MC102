@@ -1,0 +1,9 @@
+computer 7
+cards 6
+algorithm 5
+this 5
+looks 4
+science 4
+scientist 4
+sort 4
+them 4

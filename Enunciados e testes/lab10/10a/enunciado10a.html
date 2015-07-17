@@ -1,0 +1,83 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 10a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 10a - Tag Cloud</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 25/05/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 7 <br> <br> <hr> <br>
+
+    <p align="justify">
+      <i>Tag cloud</i> é uma representação visual dos dados de um texto, utilizada de forma geral para descrever palavras-chaves em websites. As tags são tipicamente palavras, e a importância de cada tag é visualizada através de seu tamanho ou de sua cor. Este formato é útil para perceber os termos mais proeminentes e sua importância relativa em um texto.
+    </p>
+    
+    <p align="justify">
+      Seu visual, sua adoção e o uso do termo "tag cloud" ganhou destaque na primeira década do século 21, como uma característica dos primeiros sites e blogs da Web 2.0, e eram utilizados primeiramente para a visualização da distribuição dos metadados que descreviam o conteúdo do site.
+    </p>
+    
+    <p align="justify">
+      Mais tarde, a tag cloud foi ganhando outros usos, como gerar estatísticas de textos e até mesmo representação visual de estatísticas populacionais e geográficas, como mostra a figura abaixo a distribuição da população mundial de 2007, onde o tamanho da fonte de um país mostra o tamanho de sua população com relação aos demais países.
+    </p>
+    
+    <p align="center">
+     <img src="Population.png" width="400">
+    </p>
+    
+    <p align="justify">
+       O Flickr foi o primeiro grande site a adotar a tag cloud, em 2004, ajudando inclusive em sua divulgação e adoção em massa por outros sites. Entretanto, a saturação de seu uso e as dúvidas com relação a sua utilidade como ferramenta de navegação web levaram a uma queda notável de seu uso dois anos mais tarde. Depois desta queda, as tag clouds passaram a ser utilizadas para visualização básica de estatísticas e análise de textos.
+    </p>
+    
+    <p align="justify">
+      O conteúdo das tag clouds é único: palavras. O que muda é a aparência: sua organização, a fonte utilizada e as cores. Geralmente, além de maiores, as tags mais frequentes de um texto costumam ter cores mais fortes, como azul e preto, enquanto que tags menos frequêntes e, por este motivo menores, costumam ter cores mais acizentadas. As tag clouds ajudam a detectar, visualmente, as diferenças e similaridades entre dois textos, como podemos ver na imagem abaixo, que compara os discursos <i>State of the Union</i> apresentado por George W. Bush em 2002 e o apresentado por Barack Obama em 2011. As palavras "american", "jobs", "people", "nation" e "work" possuem frequências similares nos discursos dos dois presidentes, enquanto "freedom", "terror", "terrorists", "war" e "weapon" são muito mais frequentes no discurso do Bush, de 2002.
+    </p>
+    
+    <p align="center">
+     <img src="StateofUnion.png" width="400">
+    </p>
+
+    <p align="justify">
+      Para gerar uma tag cloud, deve-se primeiro contar as ocorrências de todas as palavras do texto, afim de saber quais são as palavras que ganharão destaque na representação visual. Sua tarefa neste laboratório será, a partir de um texto (formado apenas por palavras), retornar as palavras em ordem decrescente de número de ocorrências.
+    </p>
+    
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada consistirá de 4 inteiros, <tt>D F L M</tt>, onde:</li>
+      <ul>
+        <li><tt>D</tt> é o número máximo de palavras distintas no texto;</li>
+        <li><tt>F</tt> é o número mínimo de ocorrências para uma palavra ser considerada nas estatísticas;</li>
+        <li><tt>L</tt> é o tamanho mínimo de uma palavra para que ela seja considerada nas estatísticas.</li>
+        <li><tt>M</tt> é o tamanho máximo de uma palavra do texto.</li>
+      </ul>
+      <li>As demais linhas consistem no texto a ser processado, sem letras maiúsculas, sem acentuação e sem pontuação. O fim do texto será indicado pelo caractere '<tt>*</tt>'.</li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Seu programa deve imprimir a lista de palavras com pelo menos <tt>L</tt> caracteres e <tt>F</tt> ocorrências, uma por linha, no formato '<tt>W<sub>i</sub> Q<sub>i</sub></tt>', onde <tt>Q<sub>i</sub></tt> é o número de ocorrências da palavra <tt>W<sub>i</sub></tt> no texto, em ordem decrescente de número de ocorrências <tt>Q</tt>.</li>
+      <ul>
+        <li>Caso duas ou mais palavras possuam o mesmo número de ocorrências <tt>Q</tt>, seu programa deve imprimí-las em ordem lexicográfica.</li>
+      </ul>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="500px"><b><tt>Entrada</tt></b></td><td width="150px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>80 2 4 12<br>graduacao<br>e um grau do ensino superior obtido em cursos de graduacao ministrados pela universidade destinados a alunos que tenham concluido o ensino medio ou equivalente o ingresso se da por processo seletivo<br>a unicamp oferece cursos de graduacao em diferentes areas do conhecimento biologicas e profissoes de saude artes humanas exatas tecnologicas e da terra<br>a estrutura de ensino e pesquisa da unicamp esta em sua maior parte no campus de barao geraldo em campinas em piracicaba funciona a faculdade de odontologia de piracicaba fop em limeira a faculdade de tecnologia ft e faculdade de ciencias aplicadas fca em paulinia o centro de pesquisas quimicas biologicas e agricolas cpqba em sumare o hospital estadual e em hortolandia o hospital mario covas<br>*</tt></td><td><tt>ensino 3<br>faculdade 3<br>graduacao 3<br>biologicas 2<br>cursos 2<br>hospital 2<br>piracicaba 2<br>unicamp 2</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>80 2 4 14<br>opcoes curriculares<br>na matricula inicial na universidade e atribuido ao aluno um curriculo pleno do ano de seu ingresso<br>em curso no qual haja mais de uma habilitacao ou enfase a coordenadoria de graduacao estabelece aquela em que o aluno sera matriculado inicialmente<br>para cursos nos quais a opcao por lingua estrangeira e um componente curricular obrigatorio o aluno deve fazer a sua opaoo pela lingua no ato da matricula na universidade<br>no decorrer do curso o aluno pode alterar o curriculo pleno a habilitacao ou enfase e a lingua estrangeira para determinadas habilitacoes ou enfases ha a necessidade de aprovacao da coordenadoria de graduacao<br>a opcao por curriculo pleno anterior ao que o aluno vem cumprindo depende em qualquer caso da aprovacao das coordenadorias de graduacao responsaveis pelas disciplinas faltantes para a conclusao de seu curso pelo curriculo pleno solicitado<br>*</tt></td><td><tt>aluno 5<br>curriculo 4<br>pleno 4<br>curso 3<br>graduacao 3<br>lingua 3<br>para 3<br>aprovacao 2<br>coordenadoria 2<br>enfase 2<br>estrangeira 2<br>habilitacao 2<br>matricula 2<br>opcao 2<br>universidade 2<br></tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>120 3 3 16<br>artigo 1  os cursos de graduacao tem por finalidade habilitar a obtencao de graus academicos ou graus que correspondem a profissoes regulamentadas em lei<br>paragrafo unico  todos os cursos de graduacao da unicamp serao regidos por esta deliberacao<br>artigo 2  cada curso de graduacao e coordenado e supervisionado em suas atividades de ensino por uma comissao de graduacao presidida por um professor doutor denomidado coordenador de curso<br>paragrafo unico o coordenador de curso sera auxiliado por um professor doutor denominado coordenador associado com quem compartilhara as atividades de coordenacao e que substituira em seus impedimentos<br>artigo 3  os cursos de graduacao poderao ser ministrados em turno integral matutino vespertino e noturno<br>artigo 4  o sistema de integralizacao dos cursos adotado pela unicamp e de creditos e de matriculas por disciplina<br>1 o credito e a unidade de medida do trabalho escolar dos cursos de graduacao da unicamp e corresponde a 15 quinze horas aula de atividades academicas<br>2 as unidades de ensino deverao estabelecer limites maximos de creditos para efeito de matricula nos cursos ministrados sob sua responsabilidade<br>*</tt></td><td><tt>cursos 6<br>graduacao 6<br>por 6<br>artigo 4<br>atividades 3<br>coordenador 3<br>curso 3<br>unicamp 3</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>52 1 10 14<br>integralizacao<br>integralizacao de um curso e o cumprimento de todas as exigencias fixadas no catalogo de cursos de graduacao<br>o sistema de integralizacao adotado pela universidade e o de credito e matricula por disciplina<br>para informacao do aluno e publicado na web semestralmente o relatorio de integralizacao curricular no qual constam dentre outras informacoes as disciplinas cursadas com seus respectivos creditos e o prazo maximo para integralizacao<br>o aluno pode consultar em servicos online seu relatorio de integralizacao curricular<br>*</tt></td><td><tt>integralizacao 6<br>curricular 2<br>cumprimento 1<br>disciplina 1<br>disciplinas 1<br>exigencias 1<br>informacao 1<br>informacoes 1<br>respectivos 1<br>semestralmente 1<br>universidade 1</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>72 2 3 14<br>instituto de computacao<br>informacoes sobre mestrado e doutorado<br>o programa de pos graduacao do ic teve inicio com o mestrado em ciencia da computacao em 1977<br>o doutorado em ciencia da computacao iniciou se em 1993 ambos os cursos possuem nivel 7 na capes e ja formaram mais de 700 mestres e 150 doutores<br>o programa prima pela formacao e producao de teses e dissertacoes com alta qualidade o que pode ser atestado pela quantidade de artigos com co autoria de alunos do programa e premios recebidos em concursos de teses e dissertacoes e de melhores trabalhos em congressos nacionais e internacionais<br>foram mais de 85 premios obtidos desde 1997 pelos alunos e 42 pelos professores<br>*</tt></td><td><tt>com 3<br>computacao 3<br>programa 3<br>alunos 2<br>ciencia 2<br>dissertacoes 2<br>doutorado 2<br>mais 2<br>mestrado 2<br>pela 2<br>pelos 2<br>premios 2<br>teses 2</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

@@ -1,0 +1,143 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Laboratório 13b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 13b - Quadtree</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 15/06/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 9 <br> <br> <hr> <br>
+
+    <p align="justify">
+    Em visão computacional, segmentação se refere ao processo de dividir uma imagem digital em múltiplas regiões (conjunto de pixels) ou objetos, com o objetivo de simplificar ou alterar a representação de uma imagem para facilitar a sua análise. Segmentação de imagens é tipicamente utilizada para localizar objetos e formas (tais como linhas e contornos) em imagens.
+    </p>
+
+    <p align="justify">
+    O resultado da segmentação de imagens é um conjunto de regiões/objetos ou um conjunto de contornos extraídos da imagem. Assim, cada um dos pixels em uma mesma região é similar com referência a alguma característica ou atributo, tais como intensidade, cor, textura ou continuidade. Regiões adjacentes devem possuir diferenças significativas com respeito à(s) mesma(s) característica(s).
+    </p>
+
+    <div style="vertical-align: top;" align="center">
+      <figure style="display: inline-block;">
+        <img src="img.jpg" width="300" border="1">
+        <figcaption><b>Imagem original</b></figcaption>
+      </figure>
+      <figure style="display: inline-block; vertical-align: top; margin-left: 5px;">
+        <img src="img_seg.png" width="300" border="0">
+        <figcaption><b>Imagem segmentada</b></figcaption>
+      </figure>
+    </div>
+
+    <p align="justify">
+    Dentre as abordagens existentes para segmentação de imagens, pode-se identificar uma família de técnicas baseadas na <i>divisão de regiões</i>. O princípio geral destas técnicas consiste em iniciar a segmentação com regiões maiores da imagem e, recursivamente, subdividir as regiões não homogêneas em áreas menores. O processo de subdivisão termina quando todas as regiões satisfizerem o critério de homogeneidade.
+    </p>
+
+    <p align="justify">
+    Uma técnica comum de subdivisão da imagem em regiões homogêneas utiliza a representação <i>quadtree</i>, que é uma estrutura hierárquica baseada na decomposição recursiva e regular da imagem em quadrantes. Considerando apenas imagens preto-e-branco, a geração da <i>quadtree</i> segue as seguintes regras:
+    </p><ul>
+      <li>No início, tem-se apenas uma região composta pela imagem inteira.</li>
+      <li>Uma região, se não for homogênea, é dividida em quadrantes. Ou seja, a região é dividida em quatro subregiões, onde as dimensões (largura e altura) dessas subregiões são, aproximadamente, a metade da região original.</li>
+      <li>Uma região é homogênea se for totalmente preta ou branca.</li>
+      <li>Quando uma região é dividida em quadrantes, os quadrantes resultantes têm o mesmo tamanho e representam 4 novas regiões da imagem.</li>
+      <li>A geração da <i>quadtree</i> termina quando todas as regiões da imagem são homogêneas.</li>
+    </ul>
+    <p></p>
+
+    <p align="justify">
+    Para ilustrar esse conceito, seja a imagem (em preto-e-branco) mostrada na figura (a), a qual é representada por uma matriz binária (0 = branco, 1 = preto) de <tt>2<sup>3</sup> × 2<sup>3</sup></tt> pixels, mostrada na figura (b). As regiões homogêneas resultantes da decomposição da <i>quadtree</i> são mostradas na figura (c).
+    </p>
+
+    <center>
+      <img src="figuras.png" heigth="150">
+    </center>
+    
+    <p align="justify">
+    A tarefa deste laboratório é desenvolver um programa que, dada uma imagem quadrada em preto-e-branco, determinar o número de regiões formadas pela <i>quadtree</i>.
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A primeira linha da entrada contém um inteiro <tt>N</tt> (<tt>1 ≤ N ≤ 1024</tt>) que representa as dimensões (largura e altura) da imagem, isto é, a imagem a ser processada terá um tamanho de <tt>N × N</tt> pixels. Por simplicidade, <tt>N</tt> será uma potência de 2.
+      </li>
+      <li>As <tt>N</tt> linhas seguintes contêm <tt>N</tt> dígitos cada, separados por espaços, de tal forma que o <tt>j</tt>-ésimo dígito localizado na <tt>i</tt>-ésima linha representa a cor do pixel na posição <tt>(i,j)</tt>, conforme a seguinte convenção:
+        <ul>
+          <li>0: a cor do pixel na posição <tt>(i,j)</tt> é branca.</li>
+          <li>1: a cor do pixel na posição <tt>(i,j)</tt> é preta.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Seu programa deve imprimir uma linha no formato "<tt>Numero de regioes = X</tt>", em que <tt>X</tt> é o número de regiões que serão formadas pela <i>quadtree</i>.</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="350px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>
+        8<br>
+        0 0 0 0 1 1 1 1<br>
+        0 0 1 1 1 1 1 1<br>
+        0 0 1 1 1 1 1 1<br>
+        0 0 1 1 1 1 1 1<br>
+        0 0 0 0 0 1 1 1<br>
+        0 0 0 0 0 0 1 1<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0</tt></td><td><tt>Numero de regioes = 16</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>
+        4<br>
+        1 1 0 0<br>
+        1 1 0 0<br>
+        0 0 1 1<br>
+        0 0 1 1</tt></td><td><tt>Numero de regioes = 4</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>
+        16<br>
+        0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0<br>
+        0 0 0 1 1 1 1 1 1 1 1 1 1 0 0 0<br>
+        0 0 1 1 1 1 1 0 0 1 1 1 1 1 0 0<br>
+        0 1 1 1 0 0 0 0 0 0 0 0 1 1 1 0<br>
+        0 1 0 0 0 0 1 1 1 1 0 0 0 0 1 0<br>
+        0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0<br>
+        0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0<br>
+        0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0<br>
+        0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0<br>
+        0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0<br>
+        0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0<br>
+        0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0<br>
+        0 1 1 0 0 0 0 0 0 0 0 0 0 1 1 0<br>
+        0 1 1 0 0 0 0 0 0 0 0 0 0 1 1 0<br>
+        0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</tt></td><td><tt>Numero de regioes = 124</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>
+        8<br>
+        0 1 0 1 0 1 0 1<br>
+        1 0 1 0 1 0 1 0<br>
+        0 1 0 1 0 1 0 1<br>
+        1 0 1 0 1 0 1 0<br>
+        0 1 0 1 0 1 0 1<br>
+        1 0 1 0 1 0 1 0<br>
+        0 1 0 1 0 1 0 1<br>
+        1 0 1 0 1 0 1 0</tt></td><td><tt>Numero de regioes = 64</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>
+        8<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0<br>
+        0 0 0 0 0 0 0 0</tt></td><td><tt>Numero de regioes = 1</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

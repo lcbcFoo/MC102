@@ -1,0 +1,133 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 06b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 06b - A Ameaça Fantasma</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 27/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 4 <br> <br> <hr> <br>
+
+    <p align="justify">
+      A Federação Comercial, aliada ao Lorde Sith Darth Sidious, tem bloqueado as remessas para o planeta Naboo, governado pela jovem Rainha Amidala, depois de se estabelecer novos e elevados impostos sobre as rotas de comércio na galáxia. O Chanceler da República Galáctica, Valorum, enviou dois embaixadores Jedis para o centro da Federação, onde o vice-rei Nute Gunray os esperava. Assim que a nave atracou, Gunray foi informado que os embaixadores eram Cavaleiros Jedis, chamados Qui-Gon Jinn e Obi-Wan Kenobi, seu Padawan. Preocupado, Gunray contatou Darth Sidious e recebeu a ordem de eliminar os Jedis.
+    </p>
+    <p align="justify">
+      Gunray decidiu atacar o recinto onde estão Qui-Gon e Obi-Wan com gás tóxico e, por isso, precisa saber o tempo necessário para que todo o recinto seja contaminado com o gás, para saber quando entrar no recinto e retirar os corpos sem vida dos Jedis. Este recinto pode ser representado com uma matriz, onde cada posição representa uma parede ou um espaço vazio. O gás tóxico é espalhado por aspersores, a partir de vários lugares do recinto. Ele pode se espalhar apenas por espaços vazios, seguindo as seguintes regras:<br>
+      </p><ul>
+        <li>Inicialmente, no instante 0 (zero), todos os espaços vazios do recinto estão limpos (sem contaminação pelo gás tóxico).</li>
+        <li>No instante 1, as posições do recinto nas quais estão os aspersores de gás tóxico, são contaminadas.</li>
+        <li>No instante <tt>t</tt> (<tt>t</tt> &gt; 1), um espaço vazio limpo do recinto será contaminado se alguma das suas posições vizinhas foi contaminada no instante <tt>t-1</tt>. Neste problema, os vizinhos de uma posição <tt>(i,j)</tt> do recinto são as posições <tt>(i,j+1)</tt>, <tt>(i+1,j)</tt>, <tt>(i,j-1)</tt> e <tt>(i-1,j)</tt>, como mostra a seguinte figura: <br> <p align="center"><img src="vizinhos.jpg" height="90px"></p> </li>
+        <li>Uma posição que foi contaminada no instante <tt>t</tt> (<tt>t</tt> ≥ 1), continuará contaminada para todos os instantes maiores que <tt>t</tt>.</li>
+      </ul>
+    <p></p>
+    <p align="justify">
+      Por exemplo, se o recinto onde estão Qui-Gon e Obi-Wan é dado pela seguinte matriz:
+      </p><p align="center"><img src="mapa0.jpg" height="130px"></p>
+    <p></p>
+    <p align="justify">
+      ... onde as paredes são representadas por células pretas, os espaços vazios por células brancas e as posições dos aspersores indicadas pelos pontos vermelhos. O processo de espalhamento do gás tóxico ao longo do tempo é mostrado na seguinte figura:
+      </p><p align="center"><img src="mapas.jpg" height="270px"></p>
+    <p></p>
+    <p align="justify">
+      As células púrpuras representam as posições contaminadas do recinto no tempo indicado acima de cada figura. Então, o tempo necessário para que o gás tóxico contaminar todos os espaços vazios do recinto é 6. A tarefa deste laboratório é desenvolver um programa que, dada a representação matricial do recinto, com as posições dos aspersores de gás tóxico, determinar o tempo necessário para que todos os espaços vazios do recinto sejam contaminados.
+    </p>
+    
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>Na primeira linha da entrada são dados dois inteiros <tt>M</tt> (<tt>1 ≤ M ≤ 100</tt>) e <tt>N</tt> (<tt>1 ≤ N ≤ 100</tt>) que indicam, respectivamente, o número de linhas e de colunas da matriz que representa o recinto.</li>
+      <li>As <tt>M</tt> linhas seguintes contêm <tt>N</tt> dígitos cada uma, de tal forma que, o <tt>j</tt>-ésimo dígito localizado na <tt>i</tt>-ésima linha representa o conteúdo do recinto na posição <tt>(i,j)</tt>, conforme a seguinte convenção:
+        <ul>
+          <li>0: existe um espaço vazio na posição <tt>(i,j)</tt> do recinto.</li>
+          <li>1: existe uma parede na posição <tt>(i,j)</tt> do recinto.</li>
+          <li>2: existe um espaço vazio com um aspersor de gás tóxico na posição <tt>(i,j)</tt> do recinto.</li>
+        </ul></li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Se para algum tempo finito, todos os espaços vazios do recinto ficarão contaminados com o gás tóxico, imprimir uma linha no formato "<tt>Tempo = X</tt>", em que <tt>X</tt> representa o tempo necessário para contaminar todo o recinto.</li>
+      <li>Se o gás tóxico nunca contaminar todos os espaços vazios do recinto, seu programa deve imprimir uma linha no formato "<tt>Perigo: Jedis podem estar vivos</tt>".</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="280px"><b><tt>Entrada</tt></b></td><td width="280px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td>
+        <tt>7 7</tt><br>
+        <tt>1 0 0 0 0 0 1</tt><br>
+        <tt>0 1 1 0 1 1 0</tt><br>
+        <tt>2 1 0 0 0 1 0</tt><br>
+        <tt>0 0 0 2 0 0 0</tt><br>
+        <tt>0 1 0 0 0 1 0</tt><br>
+        <tt>0 1 1 0 1 1 0</tt><br>
+        <tt>0 0 0 0 0 2 0</tt></td><td><tt>Tempo = 6</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td>
+        <tt>13 15</tt><br>
+        <tt>1 1 0 0 0 0 0 0 0 0 0 0 0 1 1</tt><br>
+        <tt>1 1 0 1 1 0 0 0 0 0 1 1 0 1 1</tt><br>
+        <tt>1 1 0 1 1 0 0 0 0 0 1 1 0 1 1</tt><br>
+        <tt>1 1 0 0 0 0 1 0 1 0 0 0 0 1 1</tt><br>
+        <tt>1 1 0 0 0 1 1 0 1 1 0 0 0 1 1</tt><br>
+        <tt>1 1 0 0 1 1 0 0 0 1 1 0 0 1 1</tt><br>
+        <tt>1 1 0 1 1 0 0 2 0 0 1 1 0 1 1</tt><br>
+        <tt>1 1 0 0 1 1 0 0 0 1 1 0 0 1 1</tt><br>
+        <tt>1 1 0 0 0 1 1 0 1 1 0 0 0 1 1</tt><br>
+        <tt>1 1 0 0 0 0 1 1 1 0 0 0 0 1 1</tt><br>
+        <tt>1 1 0 1 1 0 0 1 0 0 1 1 0 1 1</tt><br>
+        <tt>1 1 0 1 1 0 0 0 0 0 1 1 0 1 1</tt><br>
+        <tt>1 1 0 0 0 0 0 0 0 0 0 0 0 1 1</tt></td><td><tt>Tempo = 25</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td>
+        <tt>14 15</tt><br>
+        <tt>0 0 0 0 0 0 0 2 0 0 0 0 0 0 0</tt><br>
+        <tt>0 0 0 0 0 1 1 1 1 1 0 0 0 0 0</tt><br>
+        <tt>0 0 0 1 1 0 0 0 0 0 1 1 0 0 0</tt><br>
+        <tt>0 0 1 0 0 0 0 0 0 0 0 0 1 0 0</tt><br>
+        <tt>0 1 0 0 0 0 0 0 0 0 0 0 0 1 0</tt><br>
+        <tt>0 1 0 0 0 0 1 1 1 0 0 0 0 1 0</tt><br>
+        <tt>0 0 0 2 0 0 1 1 1 0 0 2 0 0 0</tt><br>
+        <tt>0 1 0 0 0 0 1 1 1 0 0 0 0 1 0</tt><br>
+        <tt>0 1 0 0 0 0 0 0 0 0 0 0 0 1 0</tt><br>
+        <tt>0 0 1 0 0 0 0 0 0 0 0 0 1 0 0</tt><br>
+        <tt>0 0 0 1 1 0 0 0 0 0 1 1 0 0 0</tt><br>
+        <tt>0 0 0 0 0 1 1 1 1 1 0 0 0 0 0</tt><br>
+        <tt>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</tt><br>
+        <tt>0 0 0 0 0 0 0 2 0 0 0 0 0 0 0</tt></td><td><tt>Tempo = 9</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td>
+        <tt>17 18</tt><br>
+        <tt>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</tt><br>
+        <tt>1 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 1</tt><br>
+        <tt>1 0 0 1 1 1 1 1 0 0 1 1 1 1 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 1</tt><br>
+        <tt>1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1</tt><br>
+        <tt>1 0 0 2 0 0 0 0 0 2 0 0 0 0 0 2 0 1</tt><br>
+        <tt>1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1</tt><br>
+        <tt>1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 1 1 1 1 0 0 1 1 1 1 1 0 0 1</tt><br>
+        <tt>1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1</tt><br>
+        <tt>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</tt></td><td><tt>Tempo = 10</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td>
+        <tt>6 6</tt><br>
+        <tt>1 1 1 1 1 1 1</tt><br>
+        <tt>1 0 0 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 1</tt><br>
+        <tt>1 0 2 1 0 0 1</tt><br>
+        <tt>1 0 0 1 0 0 1</tt><br>
+        <tt>1 1 1 1 1 1 1</tt></td><td><tt>Perigo: Jedis podem estar vivos</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

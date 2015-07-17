@@ -1,0 +1,13 @@
+com 3
+computacao 3
+programa 3
+alunos 2
+ciencia 2
+dissertacoes 2
+doutorado 2
+mais 2
+mestrado 2
+pela 2
+pelos 2
+premios 2
+teses 2
