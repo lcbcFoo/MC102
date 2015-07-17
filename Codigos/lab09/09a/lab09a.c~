@@ -1,0 +1,212 @@
+/* Nome: Lucas de Camargo Barros de Castro *
+ * RA: 172678 *
+ * Laboratorio: 09a */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Calcula quantos droids ha em cada linha e coluna do campo */
+void calculaLinhasColunas(int ** campo, int m, int n, int * droidsLinha,
+                          int * droidsLinha){
+
+    int i, j, AuxDroid;
+
+    /* Conta quantos droids ha em cada linha do campo e armazena na posicao *
+     * correspondente do um vetor auxiliar droidsLinha */
+    for(i = 0; i < m; i++){
+        AuxDroid = 0;
+
+        for(j = 0; j < n; j++){
+
+            if(campo[i][j] != 0)
+                AuxDroid++;
+        }
+
+        droidsLinha[i] = AuxDroid;
+    }
+
+    /* Conta quantos droids ha em cada coluna do campo e armazena na posicao *
+     * correspondente do um vetor auxiliar droidsColuna */
+    for(j = 0; j < n; j++){
+        AuxDroid = 0;
+
+        for(i = 0; i < m; i++){
+
+            if(campo[i][j] != 0)
+                AuxDroid++;
+        }
+
+        droidsColuna[j] = AuxDroid;
+    }
+}
+
+/* Calcula quantos droids ha nas diagonais e armazena resultados em vetores
+ * auxiliares */
+void calculaDiagonais(int ** campo, int m, int n, int * D_principal,
+                      int * D_antiprinc){
+
+    int i, j, k, AuxDroid;
+
+     /* Armazena quantos droids ha em cada diagonal "principal" e guarda esse *
+      * valor em um vetor auxiliar, sendo cada posicao do vetor referente ao *
+      * numero de droids existentes naquela diagonal "principal" */
+    for(k = 0; k < m + n - 1; k++){
+        AuxDroid = 0;
+
+        if(k < n){
+            i = 0;
+            j = n - 1 - k;
+        }
+
+        else{
+            i = k + 1 - n;
+            j = 0;
+        }
+
+        while((i < m) && (j < n)){
+
+            if(campo[i][j] != 0)
+                AuxDroid++;
+
+            i++;
+            j++;
+        }
+
+        D_principal[k] = AuxDroid;
+    }
+
+     /* Armazena quantos droids ha em cada diagonal "anti-principal" e guarda *
+      * esse valor em um vetor auxiliar, sendo cada posicao do vetor referente *
+      * ao numero de droids existentes naquela diagonal "anti-principal" */
+    for(k = 0; k < m + n - 1; k++){
+        AuxDroid = 0;
+
+        if(k < n){
+            i = 0;
+            j = k;
+        }
+
+        else{
+            i = k + 1 - n;
+            j = n - 1;
+        }
+
+        while((i < m) && (j >= 0)){
+
+            if(campo[i][j] != 0)
+                AuxDroid++;
+
+            i++;
+            j--;
+        }
+
+        D_antiprinc[k] = AuxDroid;
+    }  
+}
+
+int main () {
+
+    int **campo, m, n, i, j, droids = 0, disparos = 4, PosI, PosJ, AuxDroid;
+    int *droidsLinha, *droidsColuna, AuxDisp, *D_principal, *D_antiprinc;
+
+    /* Recebe tamanho do campo */
+    scanf("%d %d", &m, &n);
+
+    /* Aloca a matriz campo */
+    campo = malloc(m * sizeof(int *));
+
+    for(i = 0; i < m; i++)
+        campo[i] = malloc(n * sizeof(int));
+
+    /* Le os valores do campo */
+    for(i = 0; i < m; i++)
+        for(j = 0; j < n; j++)
+            scanf("%d", &campo[i][j]);
+
+    /* Aloca os vetores auxiliares que armazenarao quantos droids ha em cada *
+     * linha, coluna e diagonais do campo */
+    droidsLinha = malloc(m * sizeof(int));
+    droidsColuna = malloc(n * sizeof(int));
+    D_principal = malloc((m + n - 1) * sizeof(int));
+    D_antiprinc = malloc((m + n - 1) * sizeof(int));
+
+
+    /* Chama as funcoes que contam quantos droids ha em cada linha, coluna e *
+     * diagonais "principais" e "anti-principais" */
+    calculaLinhasColunas(campo, m, n, droidsLinha, droidsColuna);
+    calculaDiagonais(campo, m, n, D_principal, D_antiprinc);
+
+    /* Calcula quantos drois serao atingidos em cada posicao que o AT-TE pode *
+     * ser colocado */
+    for(i = 0; i < m; i++){
+        for(j = 0; j < n; j++){
+
+            /* Caso o AT-TE possa ser colocado nessa posicao, sera verificado *
+             * quantos droids existem na linha, coluna e diagonais daquela *
+             * posicao,com base nos resultados ja armazenados nos vetores *
+             * auxiliares */
+            if(campo[i][j] == 0){
+                AuxDisp = 0;
+                AuxDroid = 0;
+
+                /* Caso haja algum droid nessa linha, ocorre um disparo */
+                if(droidsLinha[i] > 0)
+                    AuxDisp++;
+
+                /* Caso haja algum droid nessa coluna, ocorre um disparo */
+                if(droidsColuna[j] > 0)
+                    AuxDisp++;
+
+                AuxDroid = droidsLinha[i] + droidsColuna[j];
+
+                /* Caso haja algum droid na diagonal "principal" em que o AT-TE
+                 * se encontra, ocorre um disparo */
+                if(D_principal[i + n - 1 - j] > 0)
+                    AuxDisp++;
+
+                /* Caso haja algum droid na diagonal "anti-principal" em que o *
+                 * AT-TE se encontra, ocorre um disparo */
+                if(D_antiprinc[i + j] > 0)
+                    AuxDisp++;
+
+                AuxDroid += D_principal[i + n - 1 - j] + D_antiprinc[i + j];
+
+                /* Caso essa posicao elimine mais droids que as anteriores ela *
+                 * eh guardada */
+                if(AuxDroid > droids){
+                    droids = AuxDroid;
+                    disparos = AuxDisp;
+                    PosI = i;
+                    PosJ = j;
+                }
+
+                /* Caso ela elimine o mesmo numero de droids, verifica se ela *
+                 * efetua menos disparos */
+                else if((AuxDroid == droids) && (AuxDisp < disparos)){
+                    droids = AuxDroid;
+                    disparos = AuxDisp;
+                    PosI = i;
+                    PosJ = j;
+                }
+            }
+        }
+    }
+
+    /* Desaloca os vetores e a matriz alocados dinamicamente */
+    free(D_principal);
+    free(D_antiprinc);
+    free(droidsColuna);
+    free(droidsLinha);
+
+    for(i = 0; i < m; i++)
+        free(campo[i]);
+
+    free(campo);
+
+    /* Imprime resultados */
+    printf("Posicao = (%d,%d)\nDroids = %d\nDisparos = %d\n",
+           PosI, PosJ, droids, disparos);
+
+    return 0;
+}

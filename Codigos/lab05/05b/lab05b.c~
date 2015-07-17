@@ -1,0 +1,76 @@
+/* Nome: Lucas de Camargo Barros de Castro *
+ * RA: 172678 *
+ * Laboratorio: 05b */
+
+#include <stdio.h>
+
+int main () {
+    
+    int i, j, tamanho1 = 0, tamanho2 = 0, distancia, comum = 0;
+    char string1[101], string2[101];
+    
+    /* Le a primeira string */
+    scanf("%s", string1);
+    
+    /* Le a segunda string */
+    scanf(" %s", string2);
+    
+    /* Calcula o tamanho da primeira string */
+    while(string1[tamanho1])
+        tamanho1++;
+ 
+    /* Calcula o tamanho da segunda string */
+    while(string2[tamanho2])
+        tamanho2++;
+    
+    /* Esse loop transforma elementos de string1 em maiusculas */
+    for(i = 0; string1[i]; i++) { 
+        
+        if(((int) string1[i] <= 'z') && ((int) string1[i] >= 'a')) 
+            string1[i] -= 32;
+    
+    }
+    
+    /* Esse loop transforma elementos de string2 em maiusculas */
+    for(i = 0; string1[i]; i++) { 
+        
+        if(((int) string2[i] <= 'z') && ((int) string2[i] >= 'a')) 
+            string2[i] -= 32;
+    
+    }
+      
+    /* Loop externo seleciona um elemento da string1 */
+    for(i = 0; i < tamanho1; i++) {
+        
+        /* Loop seleciona um elemento da string2 */
+        for(j = 0; j < tamanho2; j++) {
+            
+            /* Compara os 2 elementos selecionados, se forem iguais, * 
+             * substitui esse elemento por '\0' nas strings */
+            if(string1[i] == string2[j]) {
+                string2[j] = '\0';
+                string1[i] = '\0';
+            }
+        }
+    }  
+     
+    /* Verifica quantos elementos foram substituidos por '\0' da string1. *
+     * Isso indicara o numero de elementos que elas possuem em comum *
+     * (O ultimo '\0' nao eh incluido na contagem) */
+    for(i = 0; i < tamanho2; i++) {
+        
+        if(string1[i] == '\0')
+            comum++;
+        
+    }
+
+    /* Calculando a distancia de acordo com a formula dada no enunciado */
+    distancia = tamanho1 + tamanho2 - 2 * comum;
+      
+    /* Imprimindo o resultado obtido */
+    printf("Distancia de Tchonsky = %d\n", distancia);
+    
+    
+    return 0;
+    
+}  

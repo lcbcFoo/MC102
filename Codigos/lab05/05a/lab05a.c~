@@ -1,0 +1,67 @@
+/* Nome: Lucas de Camargo Barros de Castro *
+ * RA: 172678 *
+ * Laboratorio: 05a */
+
+#include <stdio.h>
+
+int main () {
+    
+    int n, i, j, z, flag, tamanho, count;
+    char subseq[21], sequencia[21];
+    
+    /* Recebe o numero de testes a serem realizados */
+    scanf("%d", &n);
+  
+    /* Cada volta do loop realiza um teste, entao ele realizara n voltas */  
+    for(i = 0; i < n; i++) {
+        
+        /* Recebe a suposta subsequencia e a sequencia a serem testadas */
+        scanf(" %s", subseq);
+        scanf(" %s", sequencia);
+        
+        /* Zera o valor das variaveis reutilizadas em cada volta do loop: */
+        tamanho = 0;
+        count = 0;
+        z = 0;
+    
+        /* Calcula o tamanho da subsequencia para teste futuro */
+        while(subseq[tamanho])
+            tamanho++;
+           
+        /* Seleciona um elemento da subsequencia */
+        for(j = 0; subseq[j]; j++) {
+
+            /* flag para evitar que o proximo loop faca testes desnecessarios */
+            flag = 1;
+            
+            /* Esse loop verifica se o elemento da subseq esta presente *
+             * na sequencia, considerando apenas as posicoes a partir da *
+             * posicao atual */
+            while((sequencia[z]) && (flag)) {
+                
+                /* Se o elemento de subseq esta presente na sequencia, *
+                 * incrementa o contador e torna flag falsa */
+                if(sequencia[z] == subseq[j]) {
+                    count++;
+                    flag = 0;
+                }   
+
+                z++;
+                
+            }
+        }    
+        
+        /* Testa se o numero de elementos de subseq presentes na sequencia eh * 
+         * igual ao tamanho de subseq. Isso indica que ela eh uma subsequencia */
+        if(tamanho == count)
+            printf("Sim\n");
+        
+        /* Caso contrario ela nao eh */
+        else
+            printf("Nao\n");
+        
+    }    
+        
+    return 0;
+                    
+}

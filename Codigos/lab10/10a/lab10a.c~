@@ -1,0 +1,133 @@
+/* Nome: Lucas de Camargo Barros de Castro *
+ * RA: 172678 *
+ * Laboratorio: 10a */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+/* Define registro 'Elemento', que contem uma string e um int, que armazenam *
+ * cada palavra distinta e a sua frequencia no texto */
+typedef struct {
+
+    int frequencia;
+    char *word;
+
+}Elemento;
+
+/* Retorna o indice do elemento do vetor que deve ser colocado na posicao *
+ * 'i' na iteracao do selection sort */
+int indiceMaior(Elemento palavras[], int n, int inicio) {
+
+    int j, max = inicio;
+
+    /* A escolhe do indice prioriza maiores frequencias da palavra */
+    for (j = inicio + 1; j < n; j++){
+        if (palavras[max].frequencia < palavras[j].frequencia)
+            max = j;
+
+        /* Caso as frequencias sejam iguais, verifica qual palavra eh *
+         *  lexicograficamente menor */
+        if(palavras[max].frequencia == palavras[j].frequencia)
+            if(strcmp(palavras[max].word, palavras[j].word) > 0)
+                max = j;
+    }
+
+    return max;
+}
+
+/* Troca o conteudo de dois registros durante a ordenacao */
+void troca(Elemento *a, Elemento *b) {
+
+    Elemento aux;
+
+    aux = *a;
+    *a = *b;
+    *b = aux;
+}
+
+/* Ordena, por selection sort, o vetor de registros, levando em conta a *
+ * frequencia da palavra armazenada no registro e, em caso de mesma frequencia *
+ * a ordem lexicografica das palavras */
+void ordenando(Elemento palavras[], int n) {
+    int i, max;
+
+    for (i = 0; i < n - 1; i++) {
+        max = indiceMaior(palavras, n, i);
+        troca(&palavras[i], &palavras[max]);
+    }
+}
+
+int main() {
+
+    int D, F, L, M, count = 0, flag, i;
+    char *leitura;
+    Elemento *palavras;
+
+    /* Recebe os valores de D, F, L, M, descritos no enunciado */
+    scanf("%d %d %d %d", &D, &F, &L, &M);
+
+    /* Aloca o vetor palavras com o tamanho do numero maximo de palavras
+     * distintas, a string de leitura e as strings de cada posicao do vetor *
+     * palavras com o tamanho maximo das palavras */
+    leitura = malloc((M + 1) * sizeof(char));
+    palavras = malloc(D * sizeof(Elemento));
+
+    for(i = 0; i < D; i++)
+        palavras[i].word = malloc((M + 1) * sizeof(char));
+    
+    /* Cada ciclo do loop le uma palavra */
+    do{
+        scanf(" ");
+        scanf("%s", leitura);
+
+        /* Se a palavra possuir tamanho maior do que o tamanho minimo desejado *
+         * verifica se ela ja foi lida. Caso sim, incrementa a sua frequencia, *
+         * caso nao, armazena essa palavra na proxima posicao do vetor *    
+         * nao utilizada e inicializa sua frequencia */
+        if((leitura[0] != '*') && (strlen(leitura) >= L)){
+            flag = 1;
+
+            for(i = 0; (flag) && (i < count); i++){
+
+                if(strcmp(palavras[i].word, leitura) == 0){
+                    palavras[i].frequencia++;
+                    flag = 0;
+                }
+            }
+
+            /* Count conta o numero de palavras distintas ateh o momento. *
+             * Sempre que uma nova palavra eh armazenada, o valor de count eh *
+             * incrementado */
+            if(flag){
+                strcpy(palavras[count].word, leitura);
+                palavras[count].frequencia = 1;
+                count++;
+            }
+        }
+    }while(leitura[0] != '*');
+
+    /* Desaloca string de leitura */
+    free(leitura); 
+
+    /* Ordena o vetor de palavras */ 
+    ordenando(palavras, count);
+
+    flag = 1;
+    /* Imprime as palavras e sua frequencia na ordem requerida, ateh encontrar *
+     * uma palavra cuja frequencia eh menor do que a minima necessaria */
+    for(i = 0; (i < count) && (flag); i++){
+        if(palavras[i].frequencia >= F)
+            printf("%s %d\n", palavras[i].word, palavras[i].frequencia);
+
+        else
+            flag = 0;
+    }
+
+    /* Desaloca o vetor palavras */
+    free(palavras);
+
+    return 0;
+
+} 
