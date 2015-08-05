@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 03b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 03b - O Enigma dos Guardiões Quânticos</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 06/04/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 2 <br> <br> <hr> <br>
+
+    <p align="justify">
+      No Antigo Egito, os faraós construíam pirâmides para abrigar seus túmulos e seus tesouros. A fim de evitar que estes fossem roubados, era comum que eles fossem protegidos por algum sistema de segurança, geralmente envolvendo a resolução de algum enigma. A primeira geração de sistemas de segurança implantados baseou-se no Enigma dos Guardiões e das Portas. Neste enigma, uma pessoa fica diante de duas portas: uma que leva à sala do tesouro e a outra, à morte. Cada porta é protegida por um guardião, que são seres eternos muito fiéis ao faraó. Um deles só diz a verdade e o outro só diz mentiras. A pessoa tem que passar por uma das portas e tem direito a fazer apenas uma pergunta para um dos guardiões, que pode responder apenas "sim" ou "não".
+    </p>
+
+    <p align="justify">
+      Os sistemas de segurança baseados no Enigma dos Guardiões e das Portas foram rapidamente abandonados. Isso porque bastava duas pessoas combinarem de resolver o enigma juntas. Obviamente, uma delas poderia morrer, porém a que sobrevivesse se compremeteria a dividir o tesouro com a família da que morresse. Sendo assim, a segunda geração de sistemas de segurança baseou-se em uma variação do Enigma dos Guardiões e das Portas chamado de Enigma dos Guardiões Quânticos. Nesta variação, uma pessoa fica diante de <tt>N</tt> portas. Cada porta é protegida por um guardião, que pode ser classificado como mentiroso ou sincero. Ao invés de cada guardião responder "sim" ou "não" a uma pergunta, eles apenas fornecem um intervalo <tt>[a, b]</tt> que inclui o número de guardiões sinceros entre eles. Com base nas informações de cada guardião, é possível montar diferentes cenários consistentes com essas informações. 
+    </p>
+
+    <p align="justify">
+      Por exemplo, suponha que existam 4 guardiões: G1, G2, G3 e G4. Além disso, suponha que os intervalos fornecidos por cada guardião são:
+      </p><ul>
+        <li>G1: [0,1];</li>
+        <li>G2: [1,3];</li>
+        <li>G3: [2,3];</li>
+        <li>G4: [3,3].</li>
+      </ul>
+
+      Note que os intervalos são fechados (ou inclusivos). Sendo assim, é possível montar os seguintes cenários consistentes:
+
+      <ul>
+        <li>Cenário 1: G2 e G3 são sinceros, G1 e G4 são mentirosos;</li>
+        <li>Cenário 2: G2, G3 e G4 são sinceros e G1 é mentiroso.</li>
+      </ul>  
+    <p></p>
+
+    <p align="justify">
+      Deste modo, o nome do enigma decorre do fato de ser possível existirem cenários (ou estados) consistentes "superpostos". A porta que leva ao tesouro corresponde ao primeiro guardião sincero relativo ao cenário consistente com o maior número de guardiões sinceros. No caso do exemplo anterior, o cenário consistente com o maior número de guardiões sinceros é o Cenário 2, portanto, a porta que leva ao tesouro é a porta correspondente ao guardião G2 (primeiro guardião, em ordem númerica, daquele cenário).
+    </p>
+
+    <p align="justify">
+      Sempre existe pelo menos um cenário consistente com pelo menos um guardião sincero, caso contrário, não haveria como determinar a porta que leva ao tesouro.
+    </p>
+
+    <p align="justify">
+      Indiana Jones está em busca dos tesouros perdidos dos faraós. Ele sabe como recuperar os tesouros protegidos pela primeira geração de sistemas de segurança, porém está com dificuldades em recuperar os tesouros protegidos pela segunda geração de sistemas de segurança. Por essa razão, ele solicitou a você um programa para resolver o Enigma dos Guardiões Quânticos.
+    </p>
+
+    <h3>Entrada</h3>
+
+    A entrada é constituída de várias linhas:
+    <ul>
+      <li>A primeira linha contém um número inteiro <tt>N</tt> referente ao número de guardiões (assuma que <tt>2 ≤ N ≤ 100</tt>);</li>
+      <li>As próximas <tt>N</tt> linhas correspondem aos intervalos fornecidos pelos guardiões de tal modo que a segunda linha corresponde ao intervalo fornecido pelo Guardião 1, a terceira linha corresponde ao intervalo fornecido pelo Guardião 2 e assim sucessivamente. Mais especificamente, cada uma dessas linhas contém dois números inteiros <tt>a</tt> e <tt>b</tt>, tais que <tt>0 ≤ a ≤ b ≤ N</tt>.</li>
+    </ul>  
+
+    <h3>Saída</h3>
+    Seu programa deve imprimir a resposta em duas linhas: 
+    <ul>
+      <li>A primeira linha deve seguir o formato: "<tt>Numero de guardioes sinceros = X</tt>", onde <tt>X</tt> é igual à quantidade de guardiões sinceros do cenário consistente que possui o maior número de guardiões sinceros (<tt>1 ≤ X ≤ N</tt>);</li>
+      <li>A segunda linha deve seguir o formato: "<tt>Guardiao Y</tt>", onde <tt>Y</tt> é o número do primeiro guardião sincero relativo ao cenário consistente que possui o maior número de guardiões sinceros. O primeiro guardião sincero dentre os guardiões sinceros é aquele que possui o menor número de identificação.</li>
+    </ul>
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>4<br>0 1<br>1 3<br>2 3<br>3 3</tt></td><td><tt>Numero de guardioes sinceros = 3<br>Guardiao 2</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>2<br>1 1<br>0 0</tt></td><td><tt>Numero de guardioes sinceros = 1<br>Guardiao 1</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>3<br>1 3<br>2 3<br>3 3</tt></td><td><tt>Numero de guardioes sinceros = 3<br>Guardiao 1</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>5<br>2 2<br>3 3<br>4 4<br>5 5<br>1 1</tt></td><td><tt>Numero de guardioes sinceros = 1<br>Guardiao 5</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>10<br>6 10<br>0 4<br>9 10<br>2 7<br>1 6<br>4 5<br>7 8<br>3 10<br>9 9<br>5 5</tt></td><td><tt>Numero de guardioes sinceros = 5<br>Guardiao 4</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

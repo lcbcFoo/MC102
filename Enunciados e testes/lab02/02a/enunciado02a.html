@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 02a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 02a - Coeficiente de Rendimento</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 30/03/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 1 <br> <br> <hr> <br>
+
+    <p align="justify">
+      O Instituto de Computação possui cursos em nível de Graduação e Pós-Graduação. Na Graduação, o Instituto oferece os cursos de <i>Ciência da Computação</i> e <i>Engenharia da Computação</i>. Ja na Pós-Graduação, os cursos são divididos em duas categorias: <i>Stricto Sensu</i> e <i>Lato Sensu</i>, onde cursos <i>Lato Sensu</i> visam a especialização, e cursos <i>Stricto Sensu</i> visam à qualificação de pesquisadores, docentes e outros profissionais nas diversas áreas do conhecimento. Os dois cursos oferecidos pelo instituto na modalidade <i>Stricto Sensu</i> são <i>Mestrado em Ciência da Computação</i> e <i>Doutorado em Ciência da Computação</i>.
+    </p>
+
+    <p align="justify">
+      Diferentemente dos cursos de Graduação, onde as avaliações de rendimento das disciplinas são representadas por números de 0 a 10, e um aluno é aprovado se sua nota é maior ou igual a 5 e possui frequência mínima, as disciplinas de Pós-Graduação da Unicamp adotam o sistema de conceitos, representados por cinco letras: 
+      </p><ul>
+        <li>A = Excelente (Aprovado);</li>
+        <li>B = Bom (Aprovado);</li>
+        <li>C = Regular (Aprovado);</li>
+        <li>D = Insuficiente (Reprovado);</li>
+        <li>E = Abandono (Reprovado por frequência).</li>
+      </ul>
+    <p></p>
+
+    <p align="justify">
+      O <i>Coeficiente de Rendimento</i> (CR) é o índice que mede o desempenho acadêmico de um aluno ao longo de seu curso. Para os cursos de Graduação, o CR é calculado da seguinte forma:
+      </p><ul>
+        <img src="somatoriograd.png">
+      </ul>
+      onde:
+      <ul>
+        <li><i>N<sub>i</sub></i> é nota relativa a <i>i</i>-ésima disciplina dentre as <i>n</i> disciplinas cursadas nesta Universidade;</li>
+        <li><i>C<sub>i</sub></i> é o número de créditos correspondentes a i-ésima disciplina.</li>
+      </ul>
+      Note que o CR dos alunos de Graduação varia entre 0 e 1, e é representado com 4 casas decimais.
+    <p></p>
+
+    <p align="justify">
+      O cálculo do <i>CR</i> dos cursos de Pós-Graduação é feito de forma semelhante:
+      </p><ul>
+        <img src="somatoriopos.png">
+      </ul>
+      onde:
+      <ul>
+        <li><i>P<sub>i</sub></i> é o <i>peso</i> do conceito relativo a <i>i</i>-ésima disciplina dentre as <i>n</i> disciplinas cursadas nesta Universidade, conforme a seguinte tabela:</li>
+        <ul>
+          <table border="1" cellpadding="0" cellspacing="0">
+            <tbody><tr align="center"><td width="100px"><b>Conceito</b></td><td width="100px"><b>Peso</b></td></tr>
+            <tr valign="top" align="center"><td>A</td><td>4</td></tr>
+            <tr valign="top" align="center"><td>B</td><td>3</td></tr>
+            <tr valign="top" align="center"><td>C</td><td>2</td></tr>
+            <tr valign="top" align="center"><td>D</td><td>1</td></tr>
+            <tr valign="top" align="center"><td>E</td><td>0</td></tr>
+          </tbody></table><br>
+        </ul>
+        <li><i>C<sub>i</sub></i> é o número de créditos correspondentes a i-ésima disciplina.</li>
+      </ul>
+      Assim, o CR dos alunos de Pós-Graduação varia entre 0 e 4, e também é representado com 4 casas decimais. Quando um aluno ainda não cursou nenhuma disciplina, seu CR é dito <tt>Indefinido</tt>.
+    <p></p>
+
+    <p align="justify">
+      Suponha que um aluno de Pós-Graduação tenha feito 3 disciplinas, com número de créditos e conceitos finais conforme tabela abaixo:
+      </p><ul>
+        <table border="1" cellpadding="0" cellspacing="0">
+          <tbody><tr align="center"><td width="150px"><b>Conceito Final</b></td><td width="100px"><b>Créditos</b></td></tr>
+          <tr valign="top" align="center"><td>B</td><td>4</td></tr>
+          <tr valign="top" align="center"><td>C</td><td>2</td></tr>
+          <tr valign="top" align="center"><td>A</td><td>1</td></tr>
+        </tbody></table><br>
+      </ul>
+
+    <p align="justify">
+      Sendo assim, o seu CR será calculado da seguinte forma:
+    </p>
+    <img src="calculo.png">
+
+    
+    <p align="justify">
+      Sua tarefa neste laboratório é desenvolver um programa que, dado uma lista de conceitos e número de créditos de um aluno de Pós-Graduação, calcule seu CR.
+    </p>
+
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>A entrada é composta por várias linhas com a seguinte estrutura: <tt>X<sub>i</sub> Y<sub>i</sub></tt>, onde <tt>X<sub>i</sub> ∈ {A,B,C,D,E}</tt> é o conceito atribuido a i-ésima disciplina cujo número de créditos é <tt>Y<sub>i</sub></tt>, com <tt>1 ≤ Y<sub>i</sub> ≤ 10</tt>. Note que se o aluno ainda não cursou disciplinas, não existirá nenhuma linha com esta estrutura.</li>
+      <li>A última linha contém um único caractere <tt>*</tt>, indicando o fim da leitura.</li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Seu programa deve imprimir o CR do aluno com o seguinte formato "<tt>CR = X.XXXX</tt>", onde <tt>X.XXXX</tt> é o CR formatado com 4 casas decimais.</li>
+      <li>Se o aluno não cursou nenhuma disciplina, seu programa deve imprimir "<tt>CR = Indefinido</tt>".</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>A 4<br>B 6<br>C 2<br>C 4<br>B 2<br>A 1<br>D 4<br>E 2<br>A 6<br>*</tt></td><td><tt>CR = 2.7097</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>E 4<br>E 10<br>E 2<br>E 1<br>E 7<br>E 3<br>E 6<br>E 5<br>E 9<br>E 7<br>E 1<br>E 4<br>E 8<br>E 10<br>E 6<br>E 3<br>E 5<br>E 2<br>E 2<br>E 7<br>*</tt></td><td><tt>CR = 0.0000</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>A 10<br>A 2<br>A 1<br>A 6<br>A 10<br>*</tt></td><td><tt>CR = 4.0000</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>A 4<br>B 3<br>C 2<br>D 1<br>E 2<br>A 3<br>B 4<br>C 5<br>*</tt></td><td><tt>CR = 2.6667</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>*</tt></td><td><tt>CR = Indefinido</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

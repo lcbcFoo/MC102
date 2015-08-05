@@ -1,0 +1,136 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 01a</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Helio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 01a - Coding Bad</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 23/03/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 1 <br> <br> <hr> <br>
+    
+    <p align="justify">
+      Para ajudar sua família após sua morte, Walter White, que recentemente foi diagnosticado com câncer pulmonar nível 3, está investindo seu dinheiro em negócios ilícitos de alto risco, porém com grande retorno financeiro. O sr. White é um excelente químico e usa seus conhecimentos para a produção de metanfetamina, uma perigosa droga. Ele possui uma estimativa de quantos lotes conseguirá produzir e um valor mínimo que ele espera deixar para a família antes de sua inescapável morte.
+    </p>
+
+    <p align="justify">
+      Walter gostaria de obter duas informações. 
+    </p>
+
+    <p align="justify">
+      <a id="calc1">
+      A primeira é quanto dinheiro ele terá, se continuar reinvestindo tudo que ganha, com uma dada quantidade de lotes estimada. Para isso, ele precisará de algumas informações, que são explicadas a seguir:
+    </a></p><a id="calc1">
+    
+    <ol>
+      <li><strong>Capital inicial (C):</strong> A quantia em dinheiro que Walter tem para investir, sendo toda usada para a compra de insumos.</li>
+      <li><strong>Taxa de retorno (i):</strong> A droga é produzida em lotes. A taxa de retorno é aplicada a cada lote vendido. Por exemplo, no caso de uma taxa de retorno de 100%, um lote gera um valor duas vezes maior do que o gasto em insumos.</li>
+      <li><strong>Quantidade de lotes (n):</strong> O sr. White possui um distribuidor que compra 100% de sua produção, logo ele precisa saber quantos lotes ele deve preparar.</li>
+      <li><strong>Montante (M):</strong> O valor final obtido ao aplicar o dinheiro segundo os parâmetros acima.</li>
+    </ol>
+
+
+    <table border="1" bordercolor="#000000" cellpadding="2" cellspacing="0" width="400px" align="center">
+      <thead><tr align="center"><th colspan="2"><p>Exemplo 1</p></th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>Dados de entrada</p>
+          </td>
+      <td align="center">
+        <p>C = 1000</p>
+            <p>i = 100%</p>
+        <p>n = 5 lotes</p>
+        <p>M = ?</p>
+      </td>
+    </tr>
+        <tr>
+          <td>
+        <p>Resultado</p>
+      </td>
+      <td align="center">
+        <p><img src="juroscompostos.gif"></p>
+      </td>
+    </tr>
+      </tbody>
+    </table>
+
+    </a><p align="justify"><a id="calc1">
+      </a><a id="calc2">A segunda informação é quantos lotes (no mínimo) ele precisará produzir para conseguir um montante desejado.
+    </a></p><a id="calc2">
+    
+    <table border="1" bordercolor="#000000" cellpadding="2" cellspacing="0" width="400px" align="center">
+      <thead><tr align="center"><th colspan="2"><p>Exemplo 2</p></th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>Dados de entrada</p>
+          </td>
+      <td align="center">
+        <p>C = 1000</p>
+            <p>i = 100%</p>
+        <p>n = ?</p>
+        <p>M = 1000000</p>
+      </td>
+    </tr>
+        <tr>
+          <td>
+        <p>Resultado</p>
+      </td>
+      <td align="center">
+        <p><img src="jurosinv.gif"></p>
+      </td>
+    </tr>
+      </tbody>
+    </table>
+
+    <p>A tarefa deste laboratório será calcular o montante final (<tt>M</tt>), dados <tt>C</tt>, <tt>i</tt> e <tt>n</tt>, e quantos lotes (<tt>n</tt>) o sr. White precisa para obter o montante especificado (<tt>M</tt>), dados também <tt>C</tt> e <tt>i</tt>.</p>
+
+    <h3>Entrada</h3>
+
+    Seu programa deve receber quatro números tais que:
+    <ul>
+      <li>O primeiro é um número real positivo referente ao capital inicial (<tt>C</tt>);</li>
+      <li>O segundo é um número real positivo referente à porcentagem da taxa de retorno (<tt>i</tt>);</li>
+      <li>O terceiro é um número inteiro positivo referente à quantidade de lotes (<tt>n</tt>), utilizado no primeiro cálculo;</li>
+      <li>O quarto é um número real positivo referente ao montante final desejado (<tt>M</tt>), utilizado no segundo cálculo.</li>
+    </ul>  
+
+    <h3>Saída</h3>
+
+    Seu programa deve imprimir a saída em duas linhas: 
+    </a><ul><a id="calc2">
+      </a><li><a id="calc2">A primeira linha deve seguir o formato: "<tt>Montante = M</tt>", onde <tt>M</tt> é o valor do montante final, de acordo com o primeiro cálculo, especificado </a><a href="#calc1">aqui</a>.</li>
+      <li>A segunda linha deve seguir o formato: "<tt>n lote(s)</tt>", onde <tt>n</tt> é a quantidade mínima de lotes necessária para atingir o montante desejado, de acordo com o segundo cálculo, especificado <a href="#calc2">aqui</a>.</li>
+    </ul>
+
+    <p>Observações:</p>
+    <ul>
+      <li>O valor <tt>M</tt> especificado na saída acima deve ser representado com duas casas decimais, para tal, usar o comando <tt>printf</tt> com o parâmetro <tt>"%.2f".</tt></li>
+      <li>A biblioteca <tt>math.h</tt> possui uma função que calcula o logaritmo na base natural (<tt>log</tt>). Não existe uma função predefinida na biblioteca <tt>math.h</tt> que calcule o logaritmo numa dada base. No entanto, é possível calcular o logaritmo numa base qualquer 
+usando a seguinte propriedade de logaritmos:</li>
+      <img src="proplog.gif">
+      <li>O resultado da função logaritmo é um valor real, mas o número mínimo de lotes (<tt>n</tt>) deve ser um inteiro. Sendo assim, deve ser feito um arredondamento para cima para se obter o resultado do segundo cálculo. Para tal, deve-se utilizar a função <tt>ceil</tt>, da biblioteca <tt>math.h</tt>.</li>
+
+    </ul>
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="220px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>1000.00 100.00 5 1000000.00</tt></td><td><tt>Montante = 32000.00<br>10 lote(s)</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>500.00 200.00 6 500000.00</tt></td><td><tt>Montante = 364500.00<br>7 lote(s)</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>7000.00 500.00 1 3000000.00</tt></td><td><tt>Montante = 42000.00<br>4 lote(s)</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>1.00 100.00 10 30000.00</tt></td><td><tt>Montante = 1024.00<br>15 lote(s)</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>4500.00 50.00 5 50000.00</tt></td><td><tt>Montante = 34171.88<br>6 lote(s)</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

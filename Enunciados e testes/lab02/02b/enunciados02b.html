@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 02b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 02b - Dólares Élficos</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 30/03/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 2 <br> <br> <hr> <br>
+
+    <p align="justify">
+      Após destruir Sauron, e Aragorn tornar-se Rei de Gondor, a paz voltou à Terra média. Todos os heróis foram recompensados com grandes quantidades de ouro. Merry e Pippin decidiram usar sua recompensa numa viagem a Lindon, uma terra livre do mal, onde a escuridão de Sauron nunca chegou.
+    </p>
+    <p align="justify">
+      O Reino de Lindon é uma sociedade economicamente avançada, que possui sua própria moeda e o ouro não tem valor nenhum. A moeda utilizada nesse Reino é chamada <i>Dólar Élfico</i> e seu símbolo é "E$". As notas usadas neste Reino têm uma característica peculiar, os valores das notas são de E$1 ou de potências de algum número inteiro positivo. Por exemplo, existem notas com valores de E$32 (2<sup>5</sup>), E$125 (5<sup>3</sup>) e E$729 (3<sup>6</sup>). Para sorte de Merry e Pippin, no Reino de Gondor existem casas de câmbio que trocam ouro por Dólares Élficos. Porém, não é permitido fazer trocas em mais de uma casa de câmbio.
+    </p>
+    <p align="justify">
+      A conversão entre ouro e Dólares Élficos é definida, diariamente, pelo Reino de Gondor e todas as casas de câmbio devem respeitar a taxa de conversão oficial. Cada casa de câmbio possui notas de E$1 e de potências de um único número inteiro. Sendo o caminho até Lindon muito perigoso, Merry e Pippin querem obter o número mínimo de notas para poder escondê-las dentro de suas roupas. 
+    </p>
+    <p align="justify">
+      Por exemplo, se eles possuem 25 gramas de ouro, se a taxa de conversão do dia é de E$4 por grama de ouro e se existem as seguintes casas de câmbio:
+    </p>
+    <table border="1" cellpadding="0" cellspacing="0" align="center">
+      <tbody><tr align="center"><td width="150px"><b>Casa de Câmbio</b></td><td width="200px"><b>Tipo de notas</b></td></tr>
+      <tr valign="top" align="center"><td>A</td><td>1, 2, 4, 8, 16, ...</td></tr>
+      <tr valign="top" align="center"><td>B</td><td>1, 3, 9, 27, 81, ...</td></tr>
+      <tr valign="top" align="center"><td>C</td><td>1, 5, 25, 125, 625, ...</td></tr>
+      <tr valign="top" align="center"><td>D</td><td>1, 6, 36, 216, 1296, ...</td></tr>
+      <tr valign="top" align="center"><td>E</td><td>1, 7, 49, 343, 2401, ...</td></tr>
+    </tbody></table>
+    <p align="justify">
+    Então, a quantidade mínima de notas que Merry e Pippin podem obter, pelos seus E$100 de ouro, em cada um das casas é:
+    </p>
+    <table border="1" cellpadding="0" cellspacing="0" align="center">
+      <tbody><tr align="center"><td width="150px"><b>Casa de Câmbio</b></td><td width="400px"><b>Quantidade mínima de notas</b></td></tr>
+      <tr valign="top" align="center"><td>A</td><td>3 (uma nota de E$64, uma de E$32 e uma de E$4)</td></tr>
+      <tr valign="top" align="center"><td>B</td><td>4 (uma nota de E$81, duas de E$9 e uma de E$1)</td></tr>
+      <tr valign="top" align="center"><td>C</td><td>4 (quatro notas de E$25)</td></tr>
+      <tr valign="top" align="center"><td>D</td><td>10 (duas notas de E$36, quatro de E$6 e quatro de E$1)</td></tr>
+      <tr valign="top" align="center"><td>E</td><td>4 (duas notas de E$49 e duas de E$1)</td></tr>
+    </tbody></table>
+
+    <p align="justify">
+      Portanto, a quantidade mínima de notas que eles podem obter totalizando E$100 é 3.
+    </p>
+    <p align="justify">
+      A tarefa deste laboratório é desenvolver um programa que, dada a quantidade de gramas de ouro que Merry e Pippin possuem, a taxa de conversão do dia entre ouro e Dólares Élficos, o número de casas de câmbios e o tipo de notas disponíveis em cada uma delas, calcule a quantidade mínima de notas que eles podem obter quando trocarem o seu ouro.
+    </p>
+    <h3>Entrada</h3>
+
+    <ul>
+      <li>Na primeira linha da entrada são dados três números inteiros <tt>N</tt> (<tt>1 ≤ N ≤ 20</tt>), <tt>G</tt> (<tt>1 ≤ G ≤ 1000</tt>) e <tt>C</tt> (<tt>1 ≤ C ≤ 1000</tt>) que representam, respectivamente, o número de casas de câmbio, a quantidade de gramas de ouro a serem trocadas e a taxa de câmbio do dia (Dólares Élficos por grama de ouro).</li>
+      <li>A linha seguinte contém <tt>N</tt> números inteiros <tt>X<sub>i</sub></tt> (<tt>2 ≤ X<sub>i</sub> ≤ 1000</tt>), onde <tt>X<sub>i</sub></tt> indica que a casa de câmbio <tt>i</tt> possui apenas notas de E$1 e de potências de <tt>X<sub>i</sub></tt>.</li>
+    </ul>
+
+    <h3>Saída</h3>
+    <ul>
+      <li>Seu programa deve imprimir uma única linha com o
+seguinte formato "<tt>Numero minimo de notas = X</tt>",
+onde <tt>X</tt> é o número mínimo de notas que
+Merry e Pippin podem obter pelo seu ouro.</li>
+    </ul>
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="250px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>5 25 4<br>2 3 5 6 7</tt></td><td><tt>Numero minimo de notas = 3</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>6 35 29<br>10 56 8 1000 45 89</tt></td><td><tt>Numero minimo de notas = 7</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>7 41 51<br>68 52 15 548 113 154 698</tt></td><td><tt>Numero minimo de notas = 19</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>8 64 128<br>85 32 665 156 13 2 89 95</tt></td><td><tt>Numero minimo de notas = 1</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>9 36 40<br>95 56 42 156 720 36 7 9 173</tt></td><td><tt>Numero minimo de notas = 2</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>

@@ -1,0 +1,168 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laboratório 01b</title>
+  </head>
+  
+  <body style="text-align: justify"> 
+    
+    <em> <b> MC102 - Algoritmos e Programação de Computadores </b> </em> <br>
+    <em> <b> Turmas QRSTWY </b> </em> <br>
+    <em> <b> Instituto de Computação - Unicamp </b> </em> <br>
+    <em> <b> Professores: </b> Hélio Pedrini e Zanoni Dias </em> <br>
+    <em> <b> Monitores: </b> Andre Rodrigues Oliveira, Gustavo Rodrigues Galvão, Javier Alvaro Vargas Muñoz e Thierry Pinheiro Moreira</em>
+
+    <br> <br> <hr>
+    <h2>Lab 01b - Conta de Água</h2>
+
+    <b> <em> Prazo de entrega: </em> </b> 23/03/2015 às 13h59m59s <br>
+    <b> <em> Peso: </em> </b> 1 <br> <br> <hr> <br>
+
+    <p align="justify">
+      A Região Sudeste do país vive hoje a maior crise hídrica de sua história. Em São Paulo, a situação mais emblemática é a do Sistema Cantareira. Maior sistema administrado pela Sabesp e um dos maiores do mundo, ele é responsável por abastecer milhões de pessoas. No começo de fevereiro de 2015, o nível de água de seus reservatórios chegou a 5% do seu volume total, o menor valor já registrado. Em caso de novo período prolongado de estiagem, o sistema pode entrar em colapso.
+    </p>
+
+    <br>
+    <center>
+      <img src="cantareira_domingo.png" height="400" width="500">
+    </center>
+    <br>
+<!--
+
+http://www.tempoagora.com.br/sustentabilidade/acompanhe-o-nivel-dos-reservatorios-em-sao-paulo/
+
+-->
+
+    <p align="justify">
+      Uma das medidas adotadas pelo governo para tentar conter a crise foi tentar reduzir o consumo. No início do ano passado, a Sabesp anunciou um programa de descontos para incentivar a redução do consumo de água. Previsto para durar alguns meses, o programa foi prorrogado até o final de 2015. Além de estimular a redução por meio de bônus, o governo passou a "desestimular o consumo" por meio de ônus, isto é, a Sabesp anunciou que, a partir deste ano, passaria a aplicar uma multa (ou tarifa de contingência) a quem aumentasse o consumo de água. A tabela abaixo resume a política de descontos/multas adotada pela Sabesp. O percentual de redução/aumento do consumo é calculado com base na média de consumo do ano anterior. 
+    </p>
+
+    <br>
+
+    <table border="1" bordercolor="#000000" cellpadding="2" cellspacing="0" align="center">
+      <thead><tr align="center"><th colspan="2"><p>Política de descontos/multas da Sabesp</p></th></tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>Redução de consumo</p>
+          </td>
+      <td>
+        <p>≥ 10% e &lt; 15%: desconto de 10% no valor da conta</p>
+            <p>≥ 15% e &lt; 20%: desconto de 20% no valor da conta</p>
+        <p>≥ 20%: desconto de 30% no valor da conta</p>
+      </td>
+    </tr>
+        <tr>
+          <td>
+        <p>Aumento de consumo</p>
+      </td>
+      <td>
+        <p>&lt; 20%: multa de 40% do valor da conta</p>
+        <p>≥ 20%: multa de 100% do valor da conta</p>
+      </td>
+    </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <p align="justify">
+      O cálculo da conta de água é realizado por faixas de consumo. Para um consumo de água de até 10m³, é cobrado um valor fixo que corresponde a uma tarifa mínima. A partir de 10m³, existem outras faixas de valores cobrados para cada m³ de água consumido. Além disso, o valor cobrado por m³ varia de acordo com a classe de consumo. A tabela abaixo mostra as tarifas relativas à classe de consumo residencial.
+    </p>
+
+    <br>
+
+    <div align="center">
+      <table style="display: inline-block;" border="1" bordercolor="#000000" cellpadding="2" cellspacing="0">
+        <thead>
+          <tr align="center">
+            <th colspan="2"><p>Residencial</p></th>
+          </tr>
+          <tr>
+            <th>Faixa (em m³)</th>
+            <th>Tarifa (em reais)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 a 10</td>
+            <td align="center">17,34/mês</td>
+          </tr>
+          <tr>
+            <td>11 a 20</td>
+            <td align="center">2,41/m³</td>
+          </tr>
+          <tr>
+            <td>21 a 50</td>
+            <td align="center">3,70/m³</td>
+          </tr> 
+          <tr>
+            <td>Acima de 50</td>
+            <td align="center">4,43/m³</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+
+    <p align="justify">
+      Para entender como o cálculo é realizado (desconsiderando eventual desconto ou multa), consideremos 3 cenários de consumo relativos à classe residencial: 
+
+      </p><ul>
+        <li><b>Cenário 1: consumo de 7m³</b>. <p>
+
+            Nesse cenário, a conta de água será igual à tarifa mínima, ou seja, R$17,34;</p></li>
+        <li><b>Cenário 2: consumo de 19m³</b>. <p>
+
+            Nesse cenário, a conta de água será igual à soma de duas componentes: 
+            </p><ul>
+              <li> uma relativa aos 10m³ da tarifa mínima;</li>
+              <li> e uma relativa aos 9m³ restantes, sobre a qual indicidirá a tarifa de 2,41/m³ correspondente à faixa de 11 a 20 m³.</li>
+          </ul><p>
+
+            Portanto, a conta de água será R$17,34 + 9 x R$2,41 = R$39,03;</p></li> <p>
+          </p><li><b>Cenário 3: consumo de 53m³</b>. <p>
+
+              Nesse cenário, a conta de água será igual à soma de 4 componentes:
+              </p><ul>
+                <li> uma relativa aos 10m³ da tarifa mínima;</li>
+                <li> uma relativa a 10m³ correspondentes à faixa de 11 a 20 m³, sobre a qual indicidirá a tarifa de 2,41/m³; </li>
+                <li> uma relativa a 30m³ correspondentes à faixa de 21 a 50 m³, sobre a qual indicidirá a tarifa de 3,70/m³; </li>
+                <li> e uma relativa aos 3m³ restantes, sobre a qual indicidirá a tarifa de 4,43/m³ correspondente à faixa acima de 50m³.</li>
+            </ul><p>
+
+              Portanto, a conta de água será R$17,34 + 10 x R$2,41 + 30 x R$3,70 + 3 x R$4,43 = R$165,73.</p></li>
+      </ul>
+    <p></p>
+
+    A tarefa deste laboratório será calcular a conta de água de uma residência considerando eventual desconto ou multa, dados o consumo médio do ano anterior e consumo atual.
+
+    <h3>Entrada</h3>
+
+      Seu programa deve receber dois números inteiros tais que:
+      <ul>
+        <li>O primeiro é um número entre 1 e 1000 e refere-se ao consumo médio do ano anterior (em m³);</li>
+        <li>O segundo é um número entre 1 e 1000 e refere-se ao consumo atual (em m³).</li>
+      </ul>  
+
+    <h3>Saída</h3>
+
+      Seu programa deve imprimir a saída em duas linhas: 
+      <ul>
+        <li>A primeira linha deve seguir o formato: "<tt>Valor original = X</tt>", onde <tt>X</tt> é o valor da conta de água original, isto é, desconsiderando eventual desconto ou multa, formatado com duas casas decimais.</li>
+        <li>A segunda linha deve seguir o formato: "<tt>Valor final = Y</tt>", onde <tt>Y</tt> é o valor da conta de água final, isto é, considerando eventual desconto ou multa, formatado com duas casas decimais.</li>
+      </ul>
+
+
+    <h3>Exemplos</h3>
+    <table border="1" cellpadding="2" cellspacing="0">
+      <tbody><tr align="center"><td width="15px"><b><tt>#</tt></b></td><td width="150px"><b><tt>Entrada</tt></b></td><td width="250px"><b><tt>Saída</tt></b></td></tr>
+      <tr valign="top" align="left"><td>1</td><td><tt>9 9</tt></td><td><tt>Valor original = 17.34<br>Valor final = 17.34</tt></td></tr>
+      <tr valign="top" align="left"><td>2</td><td><tt>15 19</tt></td><td><tt>Valor original = 39.03<br>Valor final = 78.06</tt></td></tr>
+      <tr valign="top" align="left"><td>3</td><td><tt>60 53</tt></td><td><tt>Valor original = 165.73<br>Valor final = 149.16</tt></td></tr>
+      <tr valign="top" align="left"><td>4</td><td><tt>20 17</tt></td><td><tt>Valor original = 34.21<br>Valor final = 27.37</tt></td></tr>
+      <tr valign="top" align="left"><td>5</td><td><tt>30 33</tt></td><td><tt>Valor original = 89.54<br>Valor final = 125.36</tt></td></tr>
+    </tbody></table><br>
+
+</body></html>
